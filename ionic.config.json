@@ -1,0 +1,7 @@
+{
+  "name": "ConsignApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
