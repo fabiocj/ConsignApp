@@ -7,6 +7,30 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header style="text-align: center">
+      Cálculo Rápido
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>Renda (R$)</ion-label>
+        <ion-input type="number" #renda></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Despesas (R$)</ion-label>
+        <ion-input type="number" #despesas></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <button ion-button block round (click)="valeAPena()">Calcular</button>
+  <br>
+  <button ion-button full round (click)="ngIfCtrl()">Click</button>
+  <button ion-button block *ngIf="hide" [color]="isDanger ? 'danger' : 'primary'">{{ resultado }}</button>
+  <p text-center>---</p>
+  <br>
+  <button ion-button block round (click)="loadData()">Carregar JSON</button>
   <ion-list>
     <ion-item *ngFor='let item of items' (click)="itemClick(item.id)">
       <h1>{{item.id}}</h1>
