@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, ToastOptions } from 'ionic-angular';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 
@@ -20,12 +20,17 @@ export class HomePage {
   public percentualComprometer: number; //percentual que a pessoa pode comprometer da renda: 35%: verificar se eh melhor colocar 0,35
   public valor: number;
 
+  public toastOptions: ToastOptions;
+  public toastMessage: string;
+
+
   @ViewChild('renda') renda;
   @ViewChild('despesas') despesas;
 
   constructor(
     public navCtrl: NavController
     , public http: HttpClient
+    , public toastCtrl: ToastController
   ) {
     //this.loadData();
   }
@@ -42,15 +47,29 @@ export class HomePage {
     alert(itemid);
   }
 
+  showToast(mensagem: string) {
+    this.toastOptions = {
+      message: mensagem
+      , duration: 3000
+      , position: 'bottom'
+    }
+
+    this.toastCtrl.create(this.toastOptions).present();
+  }
+
   valeAPena() {
 
-    this.hide = !this.hide;
     this.rendaRestante = this.renda.value - this.despesas.value;
     this.valor = (this.renda.value * 35) / 100;
-    if (this.valor < this.rendaRestante) {
-      this.resultado = "Vale a Pena!";
+    if (this.renda.value == 0) {
+      this.showToast('Por favor, informe alguma renda!!');
     } else {
-      this.resultado = "Não Vale a Pena!!";
+      this.hide = !this.hide;
+      if (this.valor < this.rendaRestante) {
+        this.resultado = "Vale a Pena!";
+      } else {
+        this.resultado = "Não Vale a Pena!!";
+      }
     }
   }
 

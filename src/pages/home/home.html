@@ -27,8 +27,15 @@
   <button ion-button block round (click)="valeAPena()">Calcular</button>
   <br>
   <button ion-button full round (click)="ngIfCtrl()">Click</button>
-  <button ion-button block *ngIf="hide" [color]="isDanger ? 'danger' : 'primary'">{{ resultado }}</button>
+  <br>
+  <ion-card *ngIf="hide">
+    <br>
+    <br>
+    <p text-center><ion-icon name="cash"> {{ resultado }}</ion-icon></p>
+    <br>
+  </ion-card>
   <p text-center>---</p>
+  <br>
   <br>
   <button ion-button block round (click)="loadData()">Carregar JSON</button>
   <ion-list>
