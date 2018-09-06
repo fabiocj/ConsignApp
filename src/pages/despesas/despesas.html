@@ -5,11 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>despesas</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Despesas</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addDespesas()">
+        <ion-icon class="toolbar-icon" name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 

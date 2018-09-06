@@ -14,10 +14,9 @@
     <ion-list>
       <ion-item>
         <ion-label>Renda (R$)</ion-label>
-        <ion-input type="number" #rendas>
-        </ion-input>
+        <ion-input type="number" #rendas></ion-input>
         <button ion-button large item-right>
-          <ion-icon name="add-circle" (click)="addRenda()"></ion-icon>
+          <ion-icon name="add-circle" (click)="goRendas()"></ion-icon>
         </button>
       </ion-item>
     </ion-list>
@@ -25,6 +24,9 @@
       <ion-item>
         <ion-label>Despesas (R$)</ion-label>
         <ion-input type="number" #despesas></ion-input>
+        <button ion-button large item-right>
+            <ion-icon name="add-circle" (click)="goDespesas()"></ion-icon>
+          </button>
       </ion-item>
     </ion-list>
   </ion-card>

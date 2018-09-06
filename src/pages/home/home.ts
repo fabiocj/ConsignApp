@@ -5,6 +5,7 @@ import { Observable } from '../../../node_modules/rxjs/Observable';
 
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
 import { RendasPage } from '../rendas/rendas';
+import { DespesasPage } from '../despesas/despesas';
 
 @Component({
   selector: 'page-home',
@@ -87,8 +88,12 @@ export class HomePage {
     this.hide = !this.hide;
   }
 
-  addRenda() {
+  goRendas() {
     this.navCtrl.push(RendasPage);
+  }
+
+  goDespesas() {
+    this.navCtrl.push(DespesasPage);
   }
 
 }
