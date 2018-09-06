@@ -4,6 +4,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
+import { RendasPage } from '../rendas/rendas';
 
 @Component({
   selector: 'page-home',
@@ -84,6 +85,10 @@ export class HomePage {
 
   ngIfCtrl() {
     this.hide = !this.hide;
+  }
+
+  addRenda() {
+    this.navCtrl.push(RendasPage);
   }
 
 }
