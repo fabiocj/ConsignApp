@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cadastrar Despesas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Sobrenome</ion-label>
+      <ion-input type="text" [(ngModel)]="sobrenome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Idade</ion-label>
+      <ion-input type="text" [(ngModel)]="idade"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="setStorage();">Cadastrar</button>
+</ion-content>

@@ -9,23 +9,27 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { RendasPage } from '../pages/rendas/rendas';
-import { DespesasPage } from '../pages/despesas/despesas';
 import { RendasPageModule } from '../pages/rendas/rendas.module';
+import { RendasCadastroPageModule } from '../pages/rendas-cadastro/rendas-cadastro.module';
 import { DespesasPageModule } from '../pages/despesas/despesas.module';
+import { DespesasCadastroPageModule } from '../pages/despesas-cadastro/despesas-cadastro.module';
+import { BancoProvider } from '../providers/banco/banco';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
+    , HomePage
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrMaskerModule,
-    RendasPageModule,
-    DespesasPageModule,
-    IonicModule.forRoot(MyApp)
+    BrowserModule
+    , HttpClientModule
+    , BrMaskerModule
+    , RendasPageModule
+    , DespesasPageModule
+    , DespesasCadastroPageModule
+    , RendasCadastroPageModule
+    , IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,9 +37,14 @@ import { DespesasPageModule } from '../pages/despesas/despesas.module';
     HomePage,
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    StatusBar
+    , SplashScreen
+    , {
+      provide: ErrorHandler
+      , useClass: IonicErrorHandler
+    }
+    , BancoProvider
+    , NativeStorage
   ]
 })
-export class AppModule {}
+export class AppModule { }

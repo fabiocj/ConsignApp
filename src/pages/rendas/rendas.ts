@@ -15,7 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RendasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  nome: string;
+  sobrenome: string;
+  idade: number;
+  conteudo: boolean;
+
+  constructor(
+    public navCtrl: NavController
+    , public navParams: NavParams
+  ) {
   }
 
   ionViewDidLoad() {

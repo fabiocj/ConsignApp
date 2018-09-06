@@ -1,25 +1,57 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { DespesasCadastroPage } from '../despesas-cadastro/despesas-cadastro';
 
-/**
- * Generated class for the DespesasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-despesas',
   templateUrl: 'despesas.html',
 })
 export class DespesasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  nome: string;
+  sobrenome: string;
+  idade: number;
+  conteudo: boolean;
+
+  constructor(
+    public navCtrl: NavController
+    , private nativeStorage: NativeStorage
+  ) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DespesasPage');
+  ionViewDidEnter() {
+    this.getStorage();
   }
+
+  getStorage() {
+
+    return this.nativeStorage.getItem('myItem')
+    .then( data => {
+      this.nome = data.nome;
+      this.sobrenome = data.sobrenome;
+      this.idade = data.idade;
+      this.conteudo = true;
+    })
+    .catch(() => {
+      this.conteudo = false;
+      error => console.log(error);
+    });
+  }
+
+  cadastrar() {
+    this.navCtrl.push(DespesasCadastroPage.name);
+  }
+
+  editar() {
+    this.navCtrl.push(DespesasCadastroPage.name, {nome: this.nome, sobrenome: this.sobrenome, idade: this.idade});
+  }
+
+  remover() {
+    this.nativeStorage.remove('myItem');
+    this.getStorage();
+  }
+
 
 }
