@@ -15,16 +15,18 @@ export class HomePage {
 
   public hide: boolean = false;
   public resultado: string;
+  public resultadoAnalise: string;
   public rendaRestante: number;
   public percentualComprometido: number; //percentual ja comprometido da renda
-  public percentualComprometer: number; //percentual que a pessoa pode comprometer da renda: 35%: verificar se eh melhor colocar 0,35
+  public percentualRestante: number; //percentual ja comprometido da renda
+  public percentualPodeComprometer: number = 35; //percentual que a pessoa pode comprometer da renda: 35%: verificar se eh melhor colocar 0,35
   public valor: number;
 
   public toastOptions: ToastOptions;
   public toastMessage: string;
 
 
-  @ViewChild('renda') renda;
+  @ViewChild('rendas') rendas;
   @ViewChild('despesas') despesas;
 
   constructor(
@@ -59,16 +61,23 @@ export class HomePage {
 
   valeAPena() {
 
-    this.rendaRestante = this.renda.value - this.despesas.value;
-    this.valor = (this.renda.value * 35) / 100;
-    if (this.renda.value == 0) {
+    this.rendaRestante = this.rendas.value - this.despesas.value;
+    this.valor = (this.rendas.value * 35) / 100;
+
+
+    // percentual da renda comprometida
+    this.percentualComprometido = ((this.despesas.value * 100) / this.rendas.value);
+    this.percentualRestante = 100 - this.percentualComprometido;
+
+    if (this.rendas.value == 0) {
       this.showToast('Por favor, informe alguma renda!!');
     } else {
-      this.hide = !this.hide;
       if (this.valor < this.rendaRestante) {
-        this.resultado = "Vale a Pena!";
+        this.resultado = "Vale a Pena!!";
+        this.hide = !this.hide;
       } else {
         this.resultado = "Não Vale a Pena!!";
+        this.hide = !this.hide;
       }
     }
   }

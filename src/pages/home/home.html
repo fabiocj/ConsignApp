@@ -14,7 +14,11 @@
     <ion-list>
       <ion-item>
         <ion-label>Renda (R$)</ion-label>
-        <ion-input type="number" #renda></ion-input>
+        <ion-input type="number" #rendas>
+        </ion-input>
+        <button ion-button large item-right>
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
       </ion-item>
     </ion-list>
     <ion-list>
@@ -26,12 +30,19 @@
   </ion-card>
   <button ion-button block round (click)="valeAPena()">Calcular</button>
   <br>
-  <button ion-button full round (click)="ngIfCtrl()">Click</button>
+  <button ion-button full round (click)="ngIfCtrl()">Esconder</button>
   <br>
   <ion-card *ngIf="hide">
     <br>
+    <p text-center>
+      <ion-icon name="cash"> {{ resultado }} </ion-icon>
+    </p>
     <br>
-    <p text-center><ion-icon name="cash"> {{ resultado }}</ion-icon></p>
+    <p text-center> Você possui {{ percentualComprometido }}% de sua Renda já comprometida! </p>
+    <br>
+    <p text-center> Você ainda tem {{ percentualRestante }}% de sua Renda livre, use com sabedoria! </p>
+    <br>
+    <p text-center>Estudos dizem que o ideal é você ter no máximo {{ percentualPodeComprometer }}% de sua renda comprometida com empréstimos!!</p>
     <br>
   </ion-card>
   <p text-center>---</p>
