@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage';
 
-/*
-  Generated class for the BancoProvider provider.
+let config_key_name = "config";
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class BancoProvider {
+
+  private config = {
+    showSlide: false
+    , name: ""
+    , username: ""
+  }
 
   constructor(
     public http: HttpClient
@@ -21,10 +23,38 @@ export class BancoProvider {
   buscarBanco() {
 
     return this.nativeStorage.getItem('myItem')
-    .then(() => {
-      console.log('Banco carregado com sucesso!');
-    },
-    error => console.error(error));
+      .then(() => {
+        console.log('Banco carregado com sucesso!');
+      },
+        error => console.error(error));
+
+  }
+
+  // Recupera os dados do localstorage
+  getConfigData(): any {
+    return localStorage.getItem(config_key_name);
+  }
+
+  // Gava os dados do localstorage
+  setConfigData(showSlide?: boolean, name?: string, username?: string) {
+
+    let config = {
+      showSlide: false
+      , name: ""
+      , username: ""
+    }
+
+    if (showSlide) {
+      config.showSlide = showSlide;
+    }
+    if (name) {
+      config.name = name;
+    }
+    if (username) {
+      config.username = username;
+    }
+
+    localStorage.setItem(config_key_name, JSON.stringify(config));
 
   }
 
