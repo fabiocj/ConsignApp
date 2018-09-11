@@ -4,8 +4,8 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
-import { RendasPage } from '../rendas/rendas';
-import { DespesasPage } from '../despesas/despesas';
+import { RendaPage } from '../renda/renda';
+import { DespesaPage } from '../despesa/despesa';
 
 @Component({
   selector: 'page-home',
@@ -95,7 +95,6 @@ export class HomePage {
 
   goDespesas() {
     //this.navCtrl.push(DespesasPage);
-    //this.navCtrl.setRoot(DespesasCadastroPage);
     this.navCtrl.parent.select(2);
   }
 

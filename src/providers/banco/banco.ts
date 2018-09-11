@@ -1,73 +1,104 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage';
-
-let config_key_name = "config";
-let banco_despesas = "despesas";
-let banco_rendas = "rendas";
+import { Storage } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class BancoProvider {
 
-  private config = {
-    showSlide: false
-    , name: ""
-    , username: ""
-  }
-
-  private renda = {
-    nome: ""
-    , valor: 0
-  }
-
-  private despesa = {
-    nome: ""
-    , valor: 0
-  }
-
   constructor(
-    public http: HttpClient
-    , private nativeStorage: NativeStorage
+    public storage: Storage
+    , private datePipe: DatePipe
   ) {
     console.log('Hello BancoProvider Provider');
   }
 
-  buscarBanco() {
+  public rendaInsert(renda: Renda) {
+    let key = this.datePipe.transform(new Date(), "ddMMyyyHHmmss");
+    return this.rendaSave(key, renda);
+  }
 
-    return this.nativeStorage.getItem('myItem')
+  public rendaUpdate(key: string, renda: Renda) {
+    return this.rendaSave(key, renda);
+  }
+
+  private rendaSave(key: string, renda: Renda) {
+    return this.storage.set(key, renda);
+  }
+
+  public rendaRemove(key: string) {
+    return this.storage.remove(key);
+  }
+
+  public rendaGetAll() {
+
+    let rendas: RendaList[] = [];
+
+    return this.storage.forEach((value: Renda, key: string, iterationNumvber: number) => {
+      let renda = new RendaList();
+      renda.key = key;
+      renda.renda = value;
+      rendas.push(renda);
+    })
       .then(() => {
-        console.log('Banco carregado com sucesso!');
-      },
-        error => console.error(error));
-
+        return Promise.resolve(rendas);
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
   }
 
-  // Recupera os dados do localstorage
-  getConfigData(): any {
-    return localStorage.getItem(config_key_name);
+  public despesaInsert(despesa: Despesa) {
+    let key = this.datePipe.transform(new Date(), "ddMMyyyHHmmss");
+    return this.despesaSave(key, despesa);
   }
 
-  // Gava os dados do localstorage
-  setConfigData(showSlide?: boolean, name?: string, username?: string) {
-
-    let config = {
-      showSlide: false
-      , name: ""
-      , username: ""
-    }
-
-    if (showSlide) {
-      config.showSlide = showSlide;
-    }
-    if (name) {
-      config.name = name;
-    }
-    if (username) {
-      config.username = username;
-    }
-
-    localStorage.setItem(config_key_name, JSON.stringify(config));
-
+  public despesaUpdate(key: string, despesa: Despesa) {
+    return this.despesaSave(key, despesa);
   }
 
+  private despesaSave(key: string, despesa: Despesa) {
+    return this.storage.set(key, despesa);
+  }
+
+  public despesaRemove(key: string) {
+    return this.storage.remove(key);
+  }
+
+  public despesaGetAll() {
+
+    let despesas: DespesaList[] = [];
+
+    return this.storage.forEach((value: Despesa, key: string, iterationNumvber: number) => {
+      let despesa = new DespesaList();
+      despesa.key = key;
+      despesa.despesa = value;
+      despesas.push(despesa);
+    })
+      .then(() => {
+        return Promise.resolve(despesas);
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  }
+}
+
+export class Renda {
+  renda: string;
+  valor: number;
+}
+
+export class RendaList {
+  key: string;
+  renda: Renda;
+}
+
+export class Despesa {
+  despesa: string;
+  valor: number;
+}
+
+export class DespesaList {
+  key: string;
+  despesa: Despesa;
 }

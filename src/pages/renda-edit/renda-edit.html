@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Rendas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]="model.renda"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Valor</ion-label>
+      <ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="save()">Salvar</button>
+</ion-content>

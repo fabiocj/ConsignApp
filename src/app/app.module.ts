@@ -12,14 +12,18 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { MyApp } from './app.component';
-import { RendasPageModule } from '../pages/rendas/rendas.module';
-import { RendasCadastroPageModule } from '../pages/rendas-cadastro/rendas-cadastro.module';
-import { DespesasPageModule } from '../pages/despesas/despesas.module';
-import { DespesasCadastroPageModule } from '../pages/despesas-cadastro/despesas-cadastro.module';
 import { BancoProvider } from '../providers/banco/banco';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ConfigProvider } from '../providers/config/config';
 import { IntroPageModule } from '../pages/intro/intro.module';
+import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
+import { RendaPageModule } from '../pages/renda/renda.module';
+import { DespesaPageModule } from '../pages/despesa/despesa.module';
+import { RendaEditPageModule } from '../pages/renda-edit/renda-edit.module';
+import { DespesaEditPageModule } from '../pages/despesa-edit/despesa-edit.module';
+import { RendaEditPage } from '../pages/renda-edit/renda-edit';
+import { DespesaEditPage } from '../pages/despesa-edit/despesa-edit';
 
 @NgModule({
   declarations: [
@@ -32,12 +36,13 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     BrowserModule
     , HttpClientModule
     , BrMaskerModule
-    , RendasPageModule
-    , DespesasPageModule
-    , DespesasCadastroPageModule
-    , RendasCadastroPageModule
+    , RendaPageModule
+    , RendaEditPageModule
+    , DespesaPageModule
+    , DespesaEditPageModule
     , IntroPageModule
     , IonicModule.forRoot(MyApp)
+    , IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,8 +59,9 @@ import { IntroPageModule } from '../pages/intro/intro.module';
       , useClass: IonicErrorHandler
     }
     , BancoProvider
-    , NativeStorage,
-    ConfigProvider
+    , NativeStorage
+    , ConfigProvider
+    , DatePipe
   ]
 })
 export class AppModule { }

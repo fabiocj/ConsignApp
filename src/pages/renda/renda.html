@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Rendas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-card *ngFor='let item of rendas'>
+      <ion-card-header>
+        <h1>{{ item.renda.nome }}</h1>
+      </ion-card-header>
+      <ion-card-content>
+        <h1>R$ {{ item.renda.valor }}</h1>
+      </ion-card-content>
+      <ion-row text-center>
+        <ion-col>
+          <button ion-button icon-left clear small (click)='addRenda(item);'>
+            <ion-icon name="create"></ion-icon>
+            <div>Editar</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear small (click)='removeRenda(item);'>
+            <ion-icon name="trash"></ion-icon>
+            <div>Excluir</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="addRenda()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
