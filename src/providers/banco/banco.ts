@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 let config_key_name = "config";
+let banco_despesas = "despesas";
+let banco_rendas = "rendas";
 
 @Injectable()
 export class BancoProvider {
@@ -11,6 +13,16 @@ export class BancoProvider {
     showSlide: false
     , name: ""
     , username: ""
+  }
+
+  private renda = {
+    nome: ""
+    , valor: 0
+  }
+
+  private despesa = {
+    nome: ""
+    , valor: 0
   }
 
   constructor(

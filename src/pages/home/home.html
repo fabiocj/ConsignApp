@@ -14,19 +14,23 @@
     <ion-list>
       <ion-item>
         <ion-label>Renda (R$)</ion-label>
-        <ion-input type="number" #rendas></ion-input>
-        <button ion-button large item-right>
+        <ion-input type="number" readonly #rendas></ion-input>
+        <!--
+          <button ion-button large item-right>
           <ion-icon name="add-circle" (click)="goRendas()"></ion-icon>
         </button>
+      -->
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label>Despesas (R$)</ion-label>
-        <ion-input type="number" #despesas></ion-input>
-        <button ion-button large item-right>
+        <ion-input type="number" readonly #despesas></ion-input>
+        <!--
+          <button ion-button large item-right>
             <ion-icon name="add-circle" (click)="goDespesas()"></ion-icon>
           </button>
+        -->
       </ion-item>
     </ion-list>
   </ion-card>
@@ -44,7 +48,8 @@
     <br>
     <p text-center> Você ainda tem {{ percentualRestante }}% de sua Renda livre, use com sabedoria! </p>
     <br>
-    <p text-center>Estudos dizem que o ideal é você ter no máximo {{ percentualPodeComprometer }}% de sua renda comprometida com empréstimos!!</p>
+    <p text-center>Estudos dizem que o ideal é você ter no máximo {{ percentualPodeComprometer }}% de sua renda
+      comprometida com empréstimos!!</p>
     <br>
   </ion-card>
   <p text-center>---</p>

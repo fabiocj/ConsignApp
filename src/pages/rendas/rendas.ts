@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RendasCadastroPage } from '../rendas-cadastro/rendas-cadastro';
 
 @IonicPage()
@@ -17,6 +17,7 @@ export class RendasPage {
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
+    , public alertCtrl: AlertController
   ) {
   }
 
@@ -25,7 +26,43 @@ export class RendasPage {
   }
 
   cadastrar() {
-    this.navCtrl.push(RendasCadastroPage.name);
+    //this.navCtrl.push(RendasCadastroPage.name);
+    this.showPrompt();
+  }
+
+  showPrompt() {
+    const prompt = this.alertCtrl.create({
+      title: 'Adicionar Renda',
+      message: "Informe a renda a ser adicionada",
+      inputs: [
+        {
+          name: 'nome'
+          , placeholder: 'Nome'
+          , type: 'text'
+        }
+        ,{
+          name: 'valor'
+          , placeholder: 'R$'
+          , type: 'number'
+        }
+
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salvar',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }

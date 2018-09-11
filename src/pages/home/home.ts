@@ -89,11 +89,14 @@ export class HomePage {
   }
 
   goRendas() {
-    this.navCtrl.push(RendasPage);
+    //this.navCtrl.push(RendasPage);
+    this.navCtrl.parent.select(1);
   }
 
   goDespesas() {
-    this.navCtrl.push(DespesasPage);
+    //this.navCtrl.push(DespesasPage);
+    //this.navCtrl.setRoot(DespesasCadastroPage);
+    this.navCtrl.parent.select(2);
   }
 
 }
