@@ -25,8 +25,8 @@ export class RendaPage {
 
   ionViewDidEnter() {
     this.bancoProvider.rendaGetAll()
-      .then(results => {
-        this.rendas = results;
+      .then(resultsRenda => {
+        this.rendas = resultsRenda;
       })
   }
 
@@ -34,14 +34,14 @@ export class RendaPage {
     this.navCtrl.push(RendaEditPage);
   }
 
-  editRenda(item: RendaList) {
-    this.navCtrl.push(RendaEditPage, { key: item.key, renda: item.renda });
+  editRenda(itemRenda: RendaList) {
+    this.navCtrl.push(RendaEditPage, { key: itemRenda.key, renda: itemRenda.renda });
   }
 
-  removeRenda(item: RendaList) {
-    this.bancoProvider.rendaRemove(item.key)
+  removeRenda(itemRenda: RendaList) {
+    this.bancoProvider.rendaRemove(itemRenda.key)
       .then(() => {
-        let index = this.rendas.indexOf(item);
+        let index = this.rendas.indexOf(itemRenda);
         this.rendas.splice(index, 1);
 
         this.toastCtrl.create({

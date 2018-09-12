@@ -30,7 +30,6 @@ export class BancoProvider {
   }
 
   public rendaGetAll() {
-
     let rendas: RendaList[] = [];
 
     return this.storage.forEach((value: Renda, key: string, iterationNumvber: number) => {
@@ -65,7 +64,6 @@ export class BancoProvider {
   }
 
   public despesaGetAll() {
-
     let despesas: DespesaList[] = [];
 
     return this.storage.forEach((value: Despesa, key: string, iterationNumvber: number) => {

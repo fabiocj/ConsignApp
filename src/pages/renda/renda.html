@@ -4,25 +4,24 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
-    <ion-card *ngFor='let item of rendas'>
+    <ion-card *ngFor='let itemRenda of rendas'>
       <ion-card-header>
-        <h1>{{ item.renda.nome }}</h1>
+        <h1>{{ itemRenda.renda.renda }}</h1>
       </ion-card-header>
       <ion-card-content>
-        <h1>R$ {{ item.renda.valor }}</h1>
+        <h1>R$ {{ itemRenda.renda.valor }}</h1>
       </ion-card-content>
       <ion-row text-center>
         <ion-col>
-          <button ion-button icon-left clear small (click)='addRenda(item);'>
+          <button ion-button icon-left clear small (click)='addRenda(itemRenda);'>
             <ion-icon name="create"></ion-icon>
             <div>Editar</div>
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear small (click)='removeRenda(item);'>
+          <button ion-button icon-left clear small (click)='removeRenda(itemRenda);'>
             <ion-icon name="trash"></ion-icon>
             <div>Excluir</div>
           </button>

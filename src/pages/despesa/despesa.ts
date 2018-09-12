@@ -22,27 +22,27 @@ export class DespesaPage {
 
   ionViewDidEnter() {
     this.bancoProvider.despesaGetAll()
-      .then(results => {
-        this.despesas = results;
+      .then(resultsDespesa => {
+        this.despesas = resultsDespesa;
       })
   }
 
-  addRenda() {
+  addDespesa() {
     this.navCtrl.push(DespesaEditPage);
   }
 
-  editRenda(item: DespesaList) {
-    this.navCtrl.push(DespesaEditPage, { key: item.key, renda: item.renda });
+  editDespesa(itemDespesa: DespesaList) {
+    this.navCtrl.push(DespesaEditPage, { key: itemDespesa.key, despesa: itemDespesa.despesa });
   }
 
-  removeRenda(item: DespesaList) {
-    this.bancoProvider.rendaRemove(item.key)
+  removeDespesa(itemDespesa: DespesaList) {
+    this.bancoProvider.despesaRemove(itemDespesa.key)
       .then(() => {
-        let index = this.despesas.indexOf(item);
+        let index = this.despesas.indexOf(itemDespesa);
         this.despesas.splice(index, 1);
 
         this.toastCtrl.create({
-          message: 'Renda removida!'
+          message: 'Despesa removida!'
           , duration: 3000
           , position: 'bottom'
         }).present();

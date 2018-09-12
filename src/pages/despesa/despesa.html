@@ -4,25 +4,24 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
-    <ion-card *ngFor='let item of despesas'>
+    <ion-card *ngFor='let itemDespesa of despesas'>
       <ion-card-header>
-        <h1>{{ item.despesa.nome }}</h1>
+        <h1>{{ itemDespesa.despesa.despesa }}</h1>
       </ion-card-header>
       <ion-card-content>
-        <h1>R$ {{ item.despesa.valor }}</h1>
+        <h1>R$ {{ itemDespesa.despesa.valor }}</h1>
       </ion-card-content>
       <ion-row text-center>
         <ion-col>
-          <button ion-button icon-left clear small (click)='addDespesa(item);'>
+          <button ion-button icon-left clear small (click)='addDespesa(itemDespesa);'>
             <ion-icon name="create"></ion-icon>
             <div>Editar</div>
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear small (click)='removeDespesa(item);'>
+          <button ion-button icon-left clear small (click)='removeDespesa(itemDespesa);'>
             <ion-icon name="trash"></ion-icon>
             <div>Excluir</div>
           </button>
