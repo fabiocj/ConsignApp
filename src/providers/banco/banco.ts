@@ -12,68 +12,34 @@ export class BancoProvider {
     console.log('Hello BancoProvider Provider');
   }
 
-  public rendaInsert(renda: Renda) {
+  public insert(caixa: Caixa) {
     let key = this.datePipe.transform(new Date(), "ddMMyyyHHmmss");
-    return this.rendaSave(key, renda);
+    return this.save(key, caixa);
   }
 
-  public rendaUpdate(key: string, renda: Renda) {
-    return this.rendaSave(key, renda);
+  public update(key: string, caixa: Caixa) {
+    return this.save(key, caixa);
   }
 
-  private rendaSave(key: string, renda: Renda) {
-    return this.storage.set(key, renda);
+  private save(key: string, caixa: Caixa) {
+    return this.storage.set(key, caixa);
   }
 
-  public rendaRemove(key: string) {
+  public remove(key: string) {
     return this.storage.remove(key);
   }
 
-  public rendaGetAll() {
-    let rendas: RendaList[] = [];
+  public getAll() {
+    let caixas: CaixaList[] = [];
 
-    return this.storage.forEach((value: Renda, key: string, iterationNumvber: number) => {
-      let renda = new RendaList();
-      renda.key = key;
-      renda.renda = value;
-      rendas.push(renda);
+    return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+      let caixa = new CaixaList();
+      caixa.key = key;
+      caixa.caixa = value;
+      caixas.push(caixa);
     })
       .then(() => {
-        return Promise.resolve(rendas);
-      })
-      .catch((error) => {
-        return Promise.reject(error);
-      });
-  }
-
-  public despesaInsert(despesa: Despesa) {
-    let key = this.datePipe.transform(new Date(), "ddMMyyyHHmmss");
-    return this.despesaSave(key, despesa);
-  }
-
-  public despesaUpdate(key: string, despesa: Despesa) {
-    return this.despesaSave(key, despesa);
-  }
-
-  private despesaSave(key: string, despesa: Despesa) {
-    return this.storage.set(key, despesa);
-  }
-
-  public despesaRemove(key: string) {
-    return this.storage.remove(key);
-  }
-
-  public despesaGetAll() {
-    let despesas: DespesaList[] = [];
-
-    return this.storage.forEach((value: Despesa, key: string, iterationNumvber: number) => {
-      let despesa = new DespesaList();
-      despesa.key = key;
-      despesa.despesa = value;
-      despesas.push(despesa);
-    })
-      .then(() => {
-        return Promise.resolve(despesas);
+        return Promise.resolve(caixas);
       })
       .catch((error) => {
         return Promise.reject(error);
@@ -81,22 +47,13 @@ export class BancoProvider {
   }
 }
 
-export class Renda {
-  renda: string;
+export class Caixa {
+  caixa: string;
   valor: number;
+  tipo: boolean;
 }
 
-export class RendaList {
+export class CaixaList {
   key: string;
-  renda: Renda;
-}
-
-export class Despesa {
-  despesa: string;
-  valor: number;
-}
-
-export class DespesaList {
-  key: string;
-  despesa: Despesa;
+  caixa: Caixa;
 }

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { BancoProvider, RendaList } from '../../providers/banco/banco';
-import { RendaEditPage } from '../renda-edit/renda-edit';
+import { BancoProvider, CaixaList } from '../../providers/banco/banco';
+import { CaixaEditPage } from '../caixa-edit/caixa-edit';
 
 @Component({
   selector: 'page-renda',
   templateUrl: 'renda.html',
 })
 export class RendaPage {
-  rendas: RendaList[];
+  caixas: CaixaList[];
 
   constructor(
     public navCtrl: NavController
@@ -24,25 +24,26 @@ export class RendaPage {
   }
 
   ionViewDidEnter() {
-    this.bancoProvider.rendaGetAll()
-      .then(resultsRenda => {
-        this.rendas = resultsRenda;
+    this.bancoProvider.getAll()
+      .then(results => {
+        this.caixas = results;
       })
   }
 
   addRenda() {
-    this.navCtrl.push(RendaEditPage);
+    //this.navCtrl.push(RendaEditPage);
+    this.navCtrl.push(CaixaEditPage);
   }
 
-  editRenda(itemRenda: RendaList) {
-    this.navCtrl.push(RendaEditPage, { key: itemRenda.key, renda: itemRenda.renda });
+  editRenda(item: CaixaList) {
+    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa });
   }
 
-  removeRenda(itemRenda: RendaList) {
-    this.bancoProvider.rendaRemove(itemRenda.key)
+  removeRenda(item: CaixaList) {
+    this.bancoProvider.remove(item.key)
       .then(() => {
-        let index = this.rendas.indexOf(itemRenda);
-        this.rendas.splice(index, 1);
+        let index = this.caixas.indexOf(item);
+        this.caixas.splice(index, 1);
 
         this.toastCtrl.create({
           message: 'Renda removida!'

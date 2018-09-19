@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RendaEditPage } from './renda-edit';
+import { CaixaEditPage } from './caixa-edit';
 
 @NgModule({
   declarations: [
-    RendaEditPage,
+    CaixaEditPage,
   ],
   imports: [
-    IonicPageModule.forChild(RendaEditPage),
+    IonicPageModule.forChild(CaixaEditPage),
   ],
 })
-export class RendaEditPageModule {}
+export class CaixaEditPageModule {}

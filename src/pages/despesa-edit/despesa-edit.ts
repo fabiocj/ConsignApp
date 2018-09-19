@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { BancoProvider, Despesa } from '../../providers/banco/banco';
+import { BancoProvider, Caixa } from '../../providers/banco/banco';
 
 @IonicPage()
 @Component({
@@ -8,7 +8,7 @@ import { BancoProvider, Despesa } from '../../providers/banco/banco';
   templateUrl: 'despesa-edit.html',
 })
 export class DespesaEditPage {
-  model: Despesa;
+  model: Caixa;
   key: string;
 
   constructor(
@@ -22,7 +22,7 @@ export class DespesaEditPage {
       this.model = this.navParams.data.banco;
       this.key = this.navParams.data.key;
     } else {
-      this.model = new Despesa();
+      this.model = new Caixa();
     }
   }
 
@@ -51,9 +51,9 @@ export class DespesaEditPage {
 
   private saveDespesa() {
     if (this.key) {
-      return this.bancoProvider.despesaUpdate(this.key, this.model);
+      return this.bancoProvider.update(this.key, this.model);
     } else {
-      return this.bancoProvider.despesaInsert(this.model);
+      return this.bancoProvider.insert(this.model);
     }
   }
 

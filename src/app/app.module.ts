@@ -20,10 +20,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
 import { RendaPageModule } from '../pages/renda/renda.module';
 import { DespesaPageModule } from '../pages/despesa/despesa.module';
-import { RendaEditPageModule } from '../pages/renda-edit/renda-edit.module';
-import { DespesaEditPageModule } from '../pages/despesa-edit/despesa-edit.module';
-import { RendaEditPage } from '../pages/renda-edit/renda-edit';
-import { DespesaEditPage } from '../pages/despesa-edit/despesa-edit';
+import { CaixaEditPageModule } from '../pages/caixa-edit/caixa-edit.module';
 
 @NgModule({
   declarations: [
@@ -36,10 +33,9 @@ import { DespesaEditPage } from '../pages/despesa-edit/despesa-edit';
     BrowserModule
     , HttpClientModule
     , BrMaskerModule
+    , CaixaEditPageModule
     , RendaPageModule
-    , RendaEditPageModule
     , DespesaPageModule
-    , DespesaEditPageModule
     , IntroPageModule
     , IonicModule.forRoot(MyApp)
     , IonicStorageModule.forRoot()

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { BancoProvider, Renda } from '../../providers/banco/banco';
+import { BancoProvider, Caixa } from '../../providers/banco/banco';
 
 @IonicPage()
 @Component({
-  selector: 'page-renda-edit',
-  templateUrl: 'renda-edit.html',
+  selector: 'page-caixa-edit',
+  templateUrl: 'caixa-edit.html',
 })
-export class RendaEditPage {
-  model: Renda;
+export class CaixaEditPage {
+  model: Caixa;
   key: string;
 
   constructor(
@@ -22,19 +22,19 @@ export class RendaEditPage {
       this.model = this.navParams.data.banco;
       this.key = this.navParams.data.key;
     } else {
-      this.model = new Renda();
+      this.model = new Caixa();
     }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RendaEditPage');
+    console.log('ionViewDidLoad CaixaEditPage');
   }
 
   save() {
-    this.saveRenda()
+    this.saveDespesa()
       .then(() => {
         this.toastCtrl.create({
-          message: 'Renda salva!'
+          message: 'XXXX salva!'
           , duration: 3000
           , position: 'bottom'
         }).present();
@@ -42,18 +42,18 @@ export class RendaEditPage {
       })
       .catch(() => {
         this.toastCtrl.create({
-          message: 'Erro ao salvar a Renda!'
+          message: 'Erro ao salvar a XXXX!'
           , duration: 3000
           , position: 'bottom'
         }).present();
       })
   }
 
-  private saveRenda() {
+  private saveDespesa() {
     if (this.key) {
-      return this.bancoProvider.rendaUpdate(this.key, this.model);
+      return this.bancoProvider.update(this.key, this.model);
     } else {
-      return this.bancoProvider.rendaInsert(this.model);
+      return this.bancoProvider.insert(this.model);
     }
   }
 
