@@ -12,6 +12,7 @@ export class CaixaEditPage {
   key: string;
   origem: string;
   transacao: string;
+  tipo: boolean;
 
   constructor(
     public navCtrl: NavController
@@ -22,6 +23,13 @@ export class CaixaEditPage {
 
     this.origem = navParams.get('origem');
     this.transacao = navParams.get('transacao');
+    if (this.origem == "Renda") {
+      this.tipo = true;
+      console.log("É RENDAAAAA! :)");
+    } else {
+      this.tipo = false;
+      console.log("É DESPESA! :(");
+    }
 
     if (this.navParams.data.caixa && this.navParams.data.key) {
       this.model = this.navParams.data.caixa;
@@ -58,7 +66,7 @@ export class CaixaEditPage {
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {
-      return this.bancoProvider.insert(this.model);
+      return this.bancoProvider.insert(this.model, this.tipo);
     }
   }
 

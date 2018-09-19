@@ -12,7 +12,7 @@ export class BancoProvider {
     console.log('Hello BancoProvider Provider');
   }
 
-  public insert(caixa: Caixa) {
+  public insert(caixa: Caixa, tipo: boolean) {
     let key = this.datePipe.transform(new Date(), "ddMMyyyHHmmss");
     return this.save(key, caixa);
   }
