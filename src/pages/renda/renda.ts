@@ -31,12 +31,11 @@ export class RendaPage {
   }
 
   addRenda() {
-    //this.navCtrl.push(RendaEditPage);
-    this.navCtrl.push(CaixaEditPage);
+    this.navCtrl.push(CaixaEditPage, { transacao: "Adicionar", origem: "Renda" } );
   }
 
   editRenda(item: CaixaList) {
-    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa });
+    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Renda" });
   }
 
   removeRenda(item: CaixaList) {

@@ -16,7 +16,6 @@ import { ConfigProvider } from '../providers/config/config';
   ]
 })
 export class MyApp {
-  //rootPage: any = TabsPage;
   rootPage: any;
 
   constructor(

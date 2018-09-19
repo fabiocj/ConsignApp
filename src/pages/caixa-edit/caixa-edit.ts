@@ -10,6 +10,8 @@ import { BancoProvider, Caixa } from '../../providers/banco/banco';
 export class CaixaEditPage {
   model: Caixa;
   key: string;
+  origem: string;
+  transacao: string;
 
   constructor(
     public navCtrl: NavController
@@ -18,8 +20,11 @@ export class CaixaEditPage {
     , private toastCtrl: ToastController
   ) {
 
-    if (this.navParams.data.banco && this.navParams.data.key) {
-      this.model = this.navParams.data.banco;
+    this.origem = navParams.get('origem');
+    this.transacao = navParams.get('transacao');
+
+    if (this.navParams.data.caixa && this.navParams.data.key) {
+      this.model = this.navParams.data.caixa;
       this.key = this.navParams.data.key;
     } else {
       this.model = new Caixa();
@@ -31,10 +36,10 @@ export class CaixaEditPage {
   }
 
   save() {
-    this.saveDespesa()
+    this.saveCaixa()
       .then(() => {
         this.toastCtrl.create({
-          message: 'XXXX salva!'
+          message: this.origem + ' salva!'
           , duration: 3000
           , position: 'bottom'
         }).present();
@@ -42,14 +47,14 @@ export class CaixaEditPage {
       })
       .catch(() => {
         this.toastCtrl.create({
-          message: 'Erro ao salvar a XXXX!'
+          message: 'Erro ao salvar a ' + this.origem + '!'
           , duration: 3000
           , position: 'bottom'
         }).present();
       })
   }
 
-  private saveDespesa() {
+  private saveCaixa() {
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {

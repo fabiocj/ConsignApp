@@ -31,11 +31,11 @@ export class DespesaPage {
   }
 
   addDespesa() {
-    this.navCtrl.push(CaixaEditPage);
+    this.navCtrl.push(CaixaEditPage, { transacao: "Adicionar", origem: "Despesa" } );
   }
 
   editDespesa(item: CaixaList) {
-    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa });
+    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Despesa" });
   }
 
   removeDespesa(item: CaixaList) {
