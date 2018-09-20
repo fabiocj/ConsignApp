@@ -66,7 +66,7 @@ export class CaixaEditPage {
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {
-      return this.bancoProvider.insert(this.model, this.tipo);
+      return this.bancoProvider.insert(this.model);
     }
   }
 
