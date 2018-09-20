@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content padding>
+  <div *ngFor="let item of caixasRendas">
+    {{ item.caixa.valor }}
+  </div>
   <ion-card>
     <ion-card-header style="text-align: center">
       Cálculo Rápido
@@ -14,23 +17,13 @@
     <ion-list>
       <ion-item>
         <ion-label>Renda (R$)</ion-label>
-        <ion-input type="number" readonly #rendas></ion-input>
-        <!--
-          <button ion-button large item-right>
-          <ion-icon name="add-circle" (click)="goRendas()"></ion-icon>
-        </button>
-      -->
+        <ion-input type="number" readonly #rendas>{{ this.total }}</ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label>Despesas (R$)</ion-label>
         <ion-input type="number" readonly #despesas></ion-input>
-        <!--
-          <button ion-button large item-right>
-            <ion-icon name="add-circle" (click)="goDespesas()"></ion-icon>
-          </button>
-        -->
       </ion-item>
     </ion-list>
   </ion-card>

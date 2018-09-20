@@ -44,22 +44,36 @@ export class CaixaEditPage {
   }
 
   save() {
-    this.saveCaixa()
-      .then(() => {
-        this.toastCtrl.create({
-          message: this.origem + ' salva!'
-          , duration: 3000
-          , position: 'bottom'
-        }).present();
-        this.navCtrl.pop();
-      })
-      .catch(() => {
-        this.toastCtrl.create({
-          message: 'Erro ao salvar a ' + this.origem + '!'
-          , duration: 3000
-          , position: 'bottom'
-        }).present();
-      })
+    if (this.model.caixa == null || this.model.caixa == '') {
+      this.toastCtrl.create({
+        message: 'Favor informar um Nome para a ' + this.origem + '!'
+        , duration: 3000
+        , position: 'bottom'
+      }).present();
+    } else if (this.model.valor == null || this.model.valor == 0) {
+      this.toastCtrl.create({
+        message: 'Favor informar um Valor para a ' + this.origem + '!'
+        , duration: 3000
+        , position: 'bottom'
+      }).present();
+    } else {
+      this.saveCaixa()
+        .then(() => {
+          this.toastCtrl.create({
+            message: this.origem + ' salva!'
+            , duration: 3000
+            , position: 'bottom'
+          }).present();
+          this.navCtrl.pop();
+        })
+        .catch(() => {
+          this.toastCtrl.create({
+            message: 'Erro ao salvar a ' + this.origem + '!'
+            , duration: 3000
+            , position: 'bottom'
+          }).present();
+        })
+    }
   }
 
   private saveCaixa() {

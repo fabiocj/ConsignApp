@@ -27,7 +27,7 @@ export class RendaPage {
     this.bancoProvider.getAllRenda()
       .then(results => {
         this.caixas = results;
-      })
+      });
   }
 
   addRenda() {

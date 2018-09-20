@@ -3,17 +3,22 @@ import { NavController, ToastController, ToastOptions } from 'ionic-angular';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 
+import { BancoProvider, CaixaList } from '../../providers/banco/banco';
+
 import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
-import { RendaPage } from '../renda/renda';
-import { DespesaPage } from '../despesa/despesa';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  caixas: CaixaList[];
+  caixasRendas: CaixaList[];
+  caixasDespesas: CaixaList[];
 
   public items: any;
+
+  private totalQuantity:number;
 
   public hide: boolean = false;
   public resultado: string;
@@ -23,6 +28,9 @@ export class HomePage {
   public percentualRestante: number; //percentual ja comprometido da renda
   public percentualPodeComprometer: number = 35; //percentual que a pessoa pode comprometer da renda: 35%: verificar se eh melhor colocar 0,35
   public valor: number;
+
+  public totalRenda: number;
+  public total: number;
 
   public toastOptions: ToastOptions;
   public toastMessage: string;
@@ -35,8 +43,30 @@ export class HomePage {
     public navCtrl: NavController
     , public http: HttpClient
     , public toastCtrl: ToastController
+    , private bancoProvider: BancoProvider
   ) {
     //this.loadData();
+    this.totalQuantity = this.getTotal(this.items, 'itemPrice');
+  }
+
+  getTotal(items, calculationProperty: string) {
+    if(typeof items !== 'undefined') {
+      return items.reduce((total, item) => {
+          return total + item[calculationProperty];
+      }, 0); 
+    }
+    return 0;
+  }
+
+  ionViewDidEnter() {
+    this.bancoProvider.getAllRenda()
+      .then(resultsRenda => {
+        this.caixasRendas = resultsRenda;
+      });
+      this.bancoProvider.getAllDespesa()
+      .then(resultsDespesa => {
+        this.caixasDespesas = resultsDespesa;
+      });
   }
 
   loadData() {
@@ -57,7 +87,6 @@ export class HomePage {
       , duration: 3000
       , position: 'bottom'
     }
-
     this.toastCtrl.create(this.toastOptions).present();
   }
 
@@ -65,7 +94,6 @@ export class HomePage {
 
     this.rendaRestante = this.rendas.value - this.despesas.value;
     this.valor = (this.rendas.value * 35) / 100;
-
 
     // percentual da renda comprometida
     this.percentualComprometido = ((this.despesas.value * 100) / this.rendas.value);

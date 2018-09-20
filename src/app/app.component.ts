@@ -8,6 +8,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 import { ConfigProvider } from '../providers/config/config';
 
+let totalRenda: number = 0;
+
 @Component({
   templateUrl: 'app.html'
   , providers: [
