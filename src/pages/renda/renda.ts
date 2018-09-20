@@ -24,7 +24,7 @@ export class RendaPage {
   }
 
   ionViewDidEnter() {
-    this.bancoProvider.getAll()
+    this.bancoProvider.getAllRenda()
       .then(results => {
         this.caixas = results;
       })

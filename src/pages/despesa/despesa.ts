@@ -24,7 +24,7 @@ export class DespesaPage {
   }
 
   ionViewDidEnter() {
-    this.bancoProvider.getAll()
+    this.bancoProvider.getAllDespesa()
       .then(results => {
         this.caixas = results;
       })

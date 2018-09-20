@@ -36,6 +36,9 @@ export class BancoProvider {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
+      console.log('Nome: ', caixa.caixa.caixa);
+      console.log('Valor: ', caixa.caixa.valor);
+      console.log('Tipo: ', caixa.caixa.tipo);
       caixas.push(caixa);
     })
       .then(() => {
@@ -45,6 +48,50 @@ export class BancoProvider {
         return Promise.reject(error);
       });
   }
+
+  public getAllRenda() {
+    let caixasRenda: CaixaList[] = [];
+
+    return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+      let caixa = new CaixaList();
+      caixa.key = key;
+      caixa.caixa = value;
+      console.log('Nome: ', caixa.caixa.caixa);
+      console.log('Valor: ', caixa.caixa.valor);
+      console.log('Tipo: ', caixa.caixa.tipo);
+      if (caixa.caixa.tipo == true) {
+        caixasRenda.push(caixa);
+      }
+    })
+      .then(() => {
+        return Promise.resolve(caixasRenda);
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  }
+
+public getAllDespesa() {
+  let caixasDespesa: CaixaList[] = [];
+
+  return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+    let caixa = new CaixaList();
+    caixa.key = key;
+    caixa.caixa = value;
+    //console.log('Nome: ', caixa.caixa.caixa);
+    //console.log('Valor: ', caixa.caixa.valor);
+    //console.log('Tipo: ', caixa.caixa.tipo);
+    if (caixa.caixa.tipo == false) {
+      caixasDespesa.push(caixa);
+    }
+  })
+    .then(() => {
+      return Promise.resolve(caixasDespesa);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+}
 }
 
 export class Caixa {

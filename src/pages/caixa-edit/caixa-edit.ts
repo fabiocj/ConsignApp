@@ -63,6 +63,7 @@ export class CaixaEditPage {
   }
 
   private saveCaixa() {
+    this.model.tipo = this.tipo;
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {
