@@ -25,9 +25,13 @@ export class MyApp {
     , statusBar: StatusBar
     , splashScreen: SplashScreen
     , configProvider: ConfigProvider
+    , bancoProvider: BancoProvider
   ) {
     platform.ready().then(() => {
       let config = configProvider.getConfigData();
+      let banco = bancoProvider.calculateTotals();
+      
+      console.log('banco: ', banco);
       
       if (config == null) {
         this.rootPage = IntroPage;

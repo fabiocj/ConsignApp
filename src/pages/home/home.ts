@@ -59,6 +59,8 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
+  let total: number = 0;
+
     this.bancoProvider.getAllRenda()
       .then(resultsRenda => {
         this.caixasRendas = resultsRenda;
@@ -67,6 +69,11 @@ export class HomePage {
       .then(resultsDespesa => {
         this.caixasDespesas = resultsDespesa;
       });
+
+      this.bancoProvider.getValorRenda()
+
+      console.log('teste maroto: ', this.bancoProvider.getValorRenda());
+      console.log(this.caixasDespesas);
   }
 
   loadData() {

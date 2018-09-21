@@ -84,5 +84,4 @@ export class CaixaEditPage {
       return this.bancoProvider.insert(this.model);
     }
   }
-
 }
