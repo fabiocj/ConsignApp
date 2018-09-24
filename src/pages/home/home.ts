@@ -18,8 +18,6 @@ export class HomePage {
 
   public items: any;
 
-  private totalQuantity:number;
-
   public hide: boolean = false;
   public resultado: string;
   public resultadoAnalise: string;
@@ -35,7 +33,6 @@ export class HomePage {
   public toastOptions: ToastOptions;
   public toastMessage: string;
 
-
   @ViewChild('rendas') rendas;
   @ViewChild('despesas') despesas;
 
@@ -46,34 +43,54 @@ export class HomePage {
     , private bancoProvider: BancoProvider
   ) {
     //this.loadData();
-    this.totalQuantity = this.getTotal(this.items, 'itemPrice');
+    //this.totalQuantity = this.getTotal(this.items, 'itemPrice');
+    //console.log('valor total quantidade: ', this.totalQuantity);
   }
 
   getTotal(items, calculationProperty: string) {
-    if(typeof items !== 'undefined') {
+    if (typeof items !== 'undefined') {
       return items.reduce((total, item) => {
-          return total + item[calculationProperty];
-      }, 0); 
+        return total + item[calculationProperty];
+      }, 0);
     }
     return 0;
   }
 
   ionViewDidEnter() {
-  let total: number = 0;
+    //this.carregarProviders();
+    this.bancoProvider.getValorRenda()
+    
+    console.log('resultado do total no home: ', );
+  }
+
+  public carregarProviders() {
+    let total: number = 0;
 
     this.bancoProvider.getAllRenda()
       .then(resultsRenda => {
         this.caixasRendas = resultsRenda;
       });
-      this.bancoProvider.getAllDespesa()
+    this.bancoProvider.getAllDespesa()
       .then(resultsDespesa => {
         this.caixasDespesas = resultsDespesa;
       });
 
-      this.bancoProvider.getValorRenda()
+    console.log('Lista de Rendas: ', this.caixasRendas);
+    //console.log('Lista de Despesas: ', this.caixasDespesas);
 
-      console.log('teste maroto: ', this.bancoProvider.getValorRenda());
-      console.log(this.caixasDespesas);
+    console.log('tamanho do vetor: ', this.caixasRendas.length);
+
+    for (let lista of this.caixasRendas) {
+      console.log(lista.caixa.valor);
+      total += (lista.caixa.valor * 1);
+    }
+    console.log('valor total: ', total);
+
+    total = 0;
+    if (this.caixasRendas != null && this.caixasRendas.length > 0) {
+      this.caixasRendas.forEach(x => total += (x.caixa.valor * 1));
+    }
+    console.log('valor total embaixo: ', total);
   }
 
   loadData() {

@@ -18,7 +18,7 @@ let totalRenda: number = 0;
   ]
 })
 export class MyApp {
-  rootPage: any;
+  rootPage: any = IntroPage;
 
   constructor(
     platform: Platform
@@ -39,7 +39,7 @@ export class MyApp {
       } else {
         this.rootPage = TabsPage;
       }
-      console.log(config);
+      console.log('Valor do config: ', config);
 
       statusBar.styleDefault();
       splashScreen.hide();

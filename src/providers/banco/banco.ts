@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
+import { resolveRendererType2 } from '@angular/core/src/view/util';
 
 @Injectable()
 export class BancoProvider {
+
+  caixasRendas: CaixaList[];
+  caixasDespesas: CaixaList[];
+  public totalBancoRenda = 0;
+  public totalBancoDespesa = 0;
 
   constructor(
     public storage: Storage
@@ -98,10 +104,34 @@ export class BancoProvider {
     return totalPrice;
   }
 
+  calcularJuros(valorBase: number): Promise<number> {
+    let total: number = 0;
+
+    return new Promise((resolve, reject) => {
+      this.storage.forEach((value: Caixa, key: string, iterationNumber: number) => {
+        let caixa = new CaixaList();
+        caixa.key = key;
+        caixa.caixa = value;
+        if (caixa.caixa.tipo == true) {
+          total += (caixa.caixa.valor * 1);
+        }
+      })
+      if (valorBase > 0) {
+        let result: number = 0;
+        let juros: number = 0.1;
+
+        result = valorBase + (valorBase * juros);
+        resolve(result);
+      } else {
+        reject('O valor não pode ser zero.');
+      }
+    });
+  }
+
   public getValorRenda() {
     let total: number = 0;
 
-    this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+    this.storage.forEach((value: Caixa, key: string, iterationNumber: number) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
@@ -111,6 +141,7 @@ export class BancoProvider {
     })
       .then(() => {
         //console.log('ta no then: ', total);
+        console.log('resultado do total: ', total);
         return total;
       })
   }
