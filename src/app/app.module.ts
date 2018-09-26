@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpClientModule } from '@angular/common/http';
-import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
@@ -13,14 +12,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { MyApp } from './app.component';
 import { BancoProvider } from '../providers/banco/banco';
-import { NativeStorage } from '@ionic-native/native-storage';
 import { ConfigProvider } from '../providers/config/config';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
-import { RendaPageModule } from '../pages/renda/renda.module';
-import { DespesaPageModule } from '../pages/despesa/despesa.module';
-import { CaixaEditPageModule } from '../pages/caixa-edit/caixa-edit.module';
+import { RendaPage } from '../pages/renda/renda';
+import { DespesaPage } from '../pages/despesa/despesa';
+import { EditPage } from '../pages/edit/edit';
 
 @NgModule({
   declarations: [
@@ -28,14 +26,13 @@ import { CaixaEditPageModule } from '../pages/caixa-edit/caixa-edit.module';
     , HomePage
     , AboutPage
     , TabsPage
+    , RendaPage
+    , DespesaPage
+    , EditPage
   ],
   imports: [
     BrowserModule
     , HttpClientModule
-    , BrMaskerModule
-    , CaixaEditPageModule
-    , RendaPageModule
-    , DespesaPageModule
     , IntroPageModule
     , IonicModule.forRoot(MyApp)
     , IonicStorageModule.forRoot()
@@ -46,6 +43,9 @@ import { CaixaEditPageModule } from '../pages/caixa-edit/caixa-edit.module';
     , HomePage
     , AboutPage
     , TabsPage
+    , RendaPage
+    , DespesaPage
+    , EditPage
   ],
   providers: [
     StatusBar
@@ -55,7 +55,6 @@ import { CaixaEditPageModule } from '../pages/caixa-edit/caixa-edit.module';
       , useClass: IonicErrorHandler
     }
     , BancoProvider
-    , NativeStorage
     , ConfigProvider
     , DatePipe
   ]

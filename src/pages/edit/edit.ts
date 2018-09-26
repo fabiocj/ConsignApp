@@ -4,10 +4,10 @@ import { BancoProvider, Caixa } from '../../providers/banco/banco';
 
 @IonicPage()
 @Component({
-  selector: 'page-caixa-edit',
-  templateUrl: 'caixa-edit.html',
+  selector: 'page-edit',
+  templateUrl: 'edit.html',
 })
-export class CaixaEditPage {
+export class EditPage {
   model: Caixa;
   key: string;
   origem: string;
@@ -40,11 +40,11 @@ export class CaixaEditPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CaixaEditPage');
+    console.log('ionViewDidLoad EditPage');
   }
 
   save() {
-    if (this.model.caixa == null || this.model.caixa == '') {
+    if (this.model.descricao == null || this.model.descricao == '') {
       this.toastCtrl.create({
         message: 'Favor informar um Nome para a ' + this.origem + '!'
         , duration: 3000
@@ -77,11 +77,12 @@ export class CaixaEditPage {
   }
 
   private saveCaixa() {
-    this.model.tipo = this.tipo;
+    this.model.ehRenda = this.tipo;
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {
       return this.bancoProvider.insert(this.model);
     }
   }
+
 }

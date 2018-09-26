@@ -1,11 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ToastController, ToastOptions } from 'ionic-angular';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
-import { Observable } from '../../../node_modules/rxjs/Observable';
-
+import { NavController, ToastOptions, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
-
-import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -33,18 +30,15 @@ export class HomePage {
   public toastOptions: ToastOptions;
   public toastMessage: string;
 
-  @ViewChild('rendas') rendas;
-  @ViewChild('despesas') despesas;
+  @ViewChild('totalRendas') totalRendas;
+  @ViewChild('totalDespesas') totalDespesas;
 
   constructor(
     public navCtrl: NavController
     , public http: HttpClient
-    , public toastCtrl: ToastController
     , private bancoProvider: BancoProvider
+    , public toastCtrl: ToastController
   ) {
-    //this.loadData();
-    //this.totalQuantity = this.getTotal(this.items, 'itemPrice');
-    //console.log('valor total quantidade: ', this.totalQuantity);
   }
 
   getTotal(items, calculationProperty: string) {
@@ -56,41 +50,14 @@ export class HomePage {
     return 0;
   }
 
-  ionViewDidEnter() {
-    //this.carregarProviders();
-    this.bancoProvider.getValorRenda()
-    
-    console.log('resultado do total no home: ', );
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
   }
 
-  public carregarProviders() {
-    let total: number = 0;
-
-    this.bancoProvider.getAllRenda()
-      .then(resultsRenda => {
-        this.caixasRendas = resultsRenda;
-      });
-    this.bancoProvider.getAllDespesa()
-      .then(resultsDespesa => {
-        this.caixasDespesas = resultsDespesa;
-      });
-
-    console.log('Lista de Rendas: ', this.caixasRendas);
-    //console.log('Lista de Despesas: ', this.caixasDespesas);
-
-    console.log('tamanho do vetor: ', this.caixasRendas.length);
-
-    for (let lista of this.caixasRendas) {
-      console.log(lista.caixa.valor);
-      total += (lista.caixa.valor * 1);
-    }
-    console.log('valor total: ', total);
-
-    total = 0;
-    if (this.caixasRendas != null && this.caixasRendas.length > 0) {
-      this.caixasRendas.forEach(x => total += (x.caixa.valor * 1));
-    }
-    console.log('valor total embaixo: ', total);
+  ionViewDidEnter() {
+    this.bancoProvider.calculaTotal();
+    this.totalRendas = localStorage.getItem("totalRenda")
+    this.totalDespesas = localStorage.getItem("totalDespesa")
   }
 
   loadData() {
@@ -115,25 +82,26 @@ export class HomePage {
   }
 
   valeAPena() {
-
-    this.rendaRestante = this.rendas.value - this.despesas.value;
-    this.valor = (this.rendas.value * 35) / 100;
-
-    // percentual da renda comprometida
-    this.percentualComprometido = ((this.despesas.value * 100) / this.rendas.value);
-    this.percentualRestante = 100 - this.percentualComprometido;
-
-    if (this.rendas.value == 0) {
-      this.showToast('Por favor, informe alguma renda!!');
-    } else {
-      if (this.valor < this.rendaRestante) {
-        this.resultado = "Vale a Pena!!";
-        this.hide = !this.hide;
-      } else {
-        this.resultado = "Não Vale a Pena!!";
-        this.hide = !this.hide;
-      }
-    }
+    /*
+        this.rendaRestante = this.rendas.value - this.despesas.value;
+        this.valor = (this.rendas.value * 35) / 100;
+    
+        // percentual da renda comprometida
+        this.percentualComprometido = ((this.despesas.value * 100) / this.rendas.value);
+        this.percentualRestante = 100 - this.percentualComprometido;
+    
+        if (this.rendas.value == 0) {
+          this.showToast('Por favor, informe alguma renda!!');
+        } else {
+          if (this.valor < this.rendaRestante) {
+            this.resultado = "Vale a Pena!!";
+            this.hide = !this.hide;
+          } else {
+            this.resultado = "Não Vale a Pena!!";
+            this.hide = !this.hide;
+          }
+        }
+    */
   }
 
   ngIfCtrl() {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
-import { CaixaEditPage } from '../caixa-edit/caixa-edit';
+import { EditPage } from '../edit/edit';
 
 @Component({
   selector: 'page-despesa',
@@ -31,11 +31,11 @@ export class DespesaPage {
   }
 
   addDespesa() {
-    this.navCtrl.push(CaixaEditPage, { transacao: "Adicionar", origem: "Despesa" } );
+    this.navCtrl.push(EditPage, { transacao: "Adicionar", origem: "Despesa" } );
   }
 
   editDespesa(item: CaixaList) {
-    this.navCtrl.push(CaixaEditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Despesa" });
+    this.navCtrl.push(EditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Despesa" });
   }
 
   removeDespesa(item: CaixaList) {

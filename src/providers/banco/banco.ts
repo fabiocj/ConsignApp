@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
-import { resolveRendererType2 } from '@angular/core/src/view/util';
 
 @Injectable()
 export class BancoProvider {
-
+  private totalRenda: number = 0;
+  private totalDespesa: number = 0;
+  resultado: number = 0;
   caixasRendas: CaixaList[];
   caixasDespesas: CaixaList[];
-  public totalBancoRenda = 0;
-  public totalBancoDespesa = 0;
+  totalBancoRenda = 0;
+  totalBancoDespesa = 0;
 
   constructor(
     public storage: Storage
@@ -36,18 +37,26 @@ export class BancoProvider {
   }
 
   public getAll() {
+    this.totalRenda = 0;
+    this.totalDespesa = 0;
     let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
-      //console.log('Nome: ', caixa.caixa.caixa);
-      //console.log('Valor: ', caixa.caixa.valor);
-      //console.log('Tipo: ', caixa.caixa.tipo);
+      if (caixa.caixa.ehRenda == true) {
+        this.totalRenda += (caixa.caixa.valor * 1);
+      } else {
+        this.totalDespesa += (caixa.caixa.valor * 1);
+      }
       caixas.push(caixa);
     })
       .then(() => {
+        //console.log('totalRenda: R$', this.totalRenda);
+        //console.log('totalDespesa: R$', this.totalDespesa);
+        localStorage.setItem('totalRenda', String(this.totalRenda));
+        localStorage.setItem('totalDespesa', String(this.totalDespesa));
         return Promise.resolve(caixas);
       })
       .catch((error) => {
@@ -56,18 +65,21 @@ export class BancoProvider {
   }
 
   public getAllRenda() {
-    let caixasRenda: CaixaList[] = [];
+    this.totalRenda = 0;
+    let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
-      if (caixa.caixa.tipo == true) {
-        caixasRenda.push(caixa);
+      if (caixa.caixa.ehRenda == true) {
+        this.totalRenda += (caixa.caixa.valor * 1);
+        caixas.push(caixa);
       }
     })
       .then(() => {
-        return Promise.resolve(caixasRenda);
+        localStorage.setItem('totalRenda', String(this.totalRenda));
+        return Promise.resolve(caixas);
       })
       .catch((error) => {
         return Promise.reject(error);
@@ -75,82 +87,44 @@ export class BancoProvider {
   }
 
   public getAllDespesa() {
-    let caixasDespesa: CaixaList[] = [];
+    this.totalDespesa = 0;
+    let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
-      if (caixa.caixa.tipo == false) {
-        caixasDespesa.push(caixa);
+      if (caixa.caixa.ehRenda == false) {
+        this.totalDespesa += (caixa.caixa.valor * 1);
+        caixas.push(caixa);
       }
     })
       .then(() => {
-        return Promise.resolve(caixasDespesa);
+        localStorage.setItem('totalDespesa', String(this.totalDespesa));
+        return Promise.resolve(caixas);
       })
       .catch((error) => {
         return Promise.reject(error);
       });
   }
 
-  calculateTotals() {
-    let totalPrice = 0;
-
-    this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
-      totalPrice += (value.valor * 1);
-      console.log('valor no total: ', totalPrice);
-    });
-
-    return totalPrice;
+  public calculaTotal() {
+    console.log('total Rendas: ', localStorage.getItem("totalRenda"));
+    console.log('total Despesas: ', localStorage.getItem("totalDespesa"));
   }
 
-  calcularJuros(valorBase: number): Promise<number> {
-    let total: number = 0;
-
-    return new Promise((resolve, reject) => {
-      this.storage.forEach((value: Caixa, key: string, iterationNumber: number) => {
-        let caixa = new CaixaList();
-        caixa.key = key;
-        caixa.caixa = value;
-        if (caixa.caixa.tipo == true) {
-          total += (caixa.caixa.valor * 1);
-        }
-      })
-      if (valorBase > 0) {
-        let result: number = 0;
-        let juros: number = 0.1;
-
-        result = valorBase + (valorBase * juros);
-        resolve(result);
-      } else {
-        reject('O valor não pode ser zero.');
-      }
+  public hardReset() {
+    this.storage.clear().then(() => {
+      console.log('Todos os dados foram apagados!');
+      console.log('Feliz WIPE novo!');
     });
-  }
-
-  public getValorRenda() {
-    let total: number = 0;
-
-    this.storage.forEach((value: Caixa, key: string, iterationNumber: number) => {
-      let caixa = new CaixaList();
-      caixa.key = key;
-      caixa.caixa = value;
-      if (caixa.caixa.tipo == true) {
-        total = total + (caixa.caixa.valor * 1);
-      }
-    })
-      .then(() => {
-        //console.log('ta no then: ', total);
-        console.log('resultado do total: ', total);
-        return total;
-      })
   }
 }
 
 export class Caixa {
-  caixa: string;
+  descricao: string;
   valor: number;
-  tipo: boolean;
+  ehRenda: boolean;
 }
 
 export class CaixaList {
