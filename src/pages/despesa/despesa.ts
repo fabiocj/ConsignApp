@@ -31,7 +31,7 @@ export class DespesaPage {
   }
 
   addDespesa() {
-    this.navCtrl.push(EditPage, { transacao: "Adicionar", origem: "Despesa" } );
+    this.navCtrl.push(EditPage, { transacao: "Adicionar", origem: "Despesa" });
   }
 
   editDespesa(item: CaixaList) {
@@ -50,6 +50,7 @@ export class DespesaPage {
           , position: 'bottom'
         }).present();
       });
+    this.bancoProvider.calculaTotal();
   }
 
 }

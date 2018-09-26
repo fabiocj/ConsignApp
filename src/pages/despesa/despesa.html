@@ -6,30 +6,29 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-card *ngFor='let item of caixas'>
-      <ion-card-header>
-        <h1>{{ item.caixa.descricao }}</h1>
-      </ion-card-header>
-      <ion-card-content>
-        <h1>R$ {{ item.caixa.valor }}</h1>
-      </ion-card-content>
-      <ion-row text-center>
-        <ion-col>
-          <button ion-button icon-left clear small (click)='editDespesa(item);'>
-            <ion-icon name="create"></ion-icon>
-            <div>Editar</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small (click)='removeDespesa(item);'>
-            <ion-icon name="trash"></ion-icon>
-            <div>Excluir</div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+    <ion-item-sliding *ngFor="let item of caixas">
+      <ion-item>
+        <ion-card-content>
+          <ion-row>
+            <ion-col text-left>
+              <h1>{{ item.caixa.descricao }}</h1>
+            </ion-col>
+            <ion-col text-right>
+              <h1>R$ {{ item.caixa.valor }}</h1>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeDespesa(item);">
+          <ion-icon name="trash"></ion-icon>Excluir
+        </button>
+        <button ion-button (click)="editDespesa(item);">
+          <ion-icon name="create"></ion-icon>Editar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
-
   <ion-fab bottom right>
     <button ion-fab (click)="addDespesa()">
       <ion-icon name="add"></ion-icon>

@@ -32,6 +32,9 @@ export class HomePage {
 
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
+  @ViewChild('restanteValor') restanteValor;
+  @ViewChild('percRendaRestante') percRendaRestante;
+  @ViewChild('percRendaComprometida') percRendaComprometida;
 
   constructor(
     public navCtrl: NavController
@@ -58,6 +61,9 @@ export class HomePage {
     this.bancoProvider.calculaTotal();
     this.totalRendas = localStorage.getItem("totalRenda")
     this.totalDespesas = localStorage.getItem("totalDespesa")
+    this.restanteValor = this.totalRendas - this.totalDespesas;
+    this.percRendaRestante = 0;
+    this.percRendaComprometida = ((this.totalDespesas * 100) / this.totalRendas);
   }
 
   loadData() {
@@ -106,16 +112,6 @@ export class HomePage {
 
   ngIfCtrl() {
     this.hide = !this.hide;
-  }
-
-  goRendas() {
-    //this.navCtrl.push(RendasPage);
-    this.navCtrl.parent.select(1);
-  }
-
-  goDespesas() {
-    //this.navCtrl.push(DespesasPage);
-    this.navCtrl.parent.select(2);
   }
 
 }

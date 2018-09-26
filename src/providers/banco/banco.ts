@@ -109,6 +109,7 @@ export class BancoProvider {
   }
 
   public calculaTotal() {
+    this.getAll();
     console.log('total Rendas: ', localStorage.getItem("totalRenda"));
     console.log('total Despesas: ', localStorage.getItem("totalDespesa"));
   }

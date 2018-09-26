@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, ItemSliding } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { EditPage } from '../edit/edit';
 
@@ -31,7 +31,7 @@ export class RendaPage {
   }
 
   addRenda() {
-    this.navCtrl.push(EditPage, { transacao: "Adicionar", origem: "Renda" } );
+    this.navCtrl.push(EditPage, { transacao: "Adicionar", origem: "Renda" });
   }
 
   editRenda(item: CaixaList) {
@@ -50,5 +50,7 @@ export class RendaPage {
           , position: 'bottom'
         }).present();
       });
+    this.bancoProvider.calculaTotal();
   }
+
 }
