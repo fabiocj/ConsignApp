@@ -14,7 +14,7 @@
               <h1>{{ item.caixa.descricao }}</h1>
             </ion-col>
             <ion-col text-right>
-              <h1>R$ {{ item.caixa.valor }}</h1>
+              <h1>{{item.caixa.valor | currency:'BRL':'symbol':'1.2'}}</h1>
             </ion-col>
           </ion-row>
         </ion-card-content>
