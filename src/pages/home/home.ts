@@ -42,7 +42,7 @@ export class HomePage {
     , public http: HttpClient
     , private bancoProvider: BancoProvider
     , public toastCtrl: ToastController
-    ,private currencyPipe: CurrencyPipe
+    , private currencyPipe: CurrencyPipe
   ) {
   }
 

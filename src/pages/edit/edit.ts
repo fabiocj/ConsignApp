@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BancoProvider, Caixa } from '../../providers/banco/banco';
+import { CurrencyPipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class EditPage {
     , public navParams: NavParams
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
+    , private currencyPipe: CurrencyPipe
   ) {
 
     this.origem = navParams.get('origem');
