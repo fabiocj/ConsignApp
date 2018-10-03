@@ -22,14 +22,18 @@ import { RendaPage } from '../pages/renda/renda';
 import { DespesaPage } from '../pages/despesa/despesa';
 import { EditPage } from '../pages/edit/edit';
 
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
+
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-    align: "right",
-    allowNegative: true,
-    decimal: ",",
-    precision: 2,
-    prefix: "R$ ",
-    suffix: "",
-    thousands: "."
+  align: "right",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
 };
 
 
@@ -67,6 +71,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , { provide: ErrorHandler, useClass: IonicErrorHandler }
     //, { provide: LOCALE_ID, useValue: 'pt-BR' }
     , { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+    , { provide: LOCALE_ID, useValue: 'pt-PT' }
     , BancoProvider
     , ConfigProvider
     , DatePipe
