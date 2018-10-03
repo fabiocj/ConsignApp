@@ -15,7 +15,7 @@ import { BancoProvider } from '../providers/banco/banco';
 import { ConfigProvider } from '../providers/config/config';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { IonicStorageModule } from '@ionic/storage';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { RendaPage } from '../pages/renda/renda';
 import { DespesaPage } from '../pages/despesa/despesa';
 import { EditPage } from '../pages/edit/edit';
@@ -57,6 +57,7 @@ import { EditPage } from '../pages/edit/edit';
     , BancoProvider
     , ConfigProvider
     , DatePipe
+    , CurrencyPipe
   ]
 })
 export class AppModule { }

@@ -14,13 +14,13 @@
     <ion-list>
       <ion-item>
         <ion-label>Renda (R$)</ion-label>
-        <ion-input type="number" readonly [(ngModel)]="totalRendas" text-right></ion-input>
+        <ion-input readonly [(ngModel)]="totalRendas" text-right></ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label>Despesas (R$)</ion-label>
-        <ion-input type="number" readonly [(ngModel)]="totalDespesas" text-right></ion-input>
+        <ion-input readonly [(ngModel)]="totalDespesas" text-right></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
@@ -35,6 +35,7 @@
       </ion-item>
     </ion-list>
     <ion-list>
+        
     <ion-item>
       <ion-label>% comprometido</ion-label>
       <ion-input type="number" readonly [(ngModel)]="percRendaComprometida" text-right></ion-input>

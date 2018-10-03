@@ -3,6 +3,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { NavController, ToastOptions, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { Observable } from 'rxjs/Observable';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'page-home',
@@ -41,8 +42,14 @@ export class HomePage {
     , public http: HttpClient
     , private bancoProvider: BancoProvider
     , public toastCtrl: ToastController
+    ,private currencyPipe: CurrencyPipe
   ) {
   }
+
+  getCurrency(valor: number) {
+    return this.currencyPipe.transform(valor, 'BRL', 'symbol', '1.2');
+  }
+
 
   getTotal(items, calculationProperty: string) {
     if (typeof items !== 'undefined') {
@@ -59,8 +66,10 @@ export class HomePage {
 
   ionViewDidEnter() {
     this.bancoProvider.calculaTotal();
-    this.totalRendas = localStorage.getItem("totalRenda")
-    this.totalDespesas = localStorage.getItem("totalDespesa")
+    this.totalRendas = this.getCurrency(Number(localStorage.getItem("totalRenda")));
+    console.log('A renda ficou assim: ', this.totalRendas);
+    //this.totalDespesas = localStorage.getItem("totalDespesa");
+    this.totalDespesas = this.getCurrency(Number(localStorage.getItem("totalDespesa")));
     this.restanteValor = this.totalRendas - this.totalDespesas;
     this.percRendaRestante = 0;
     this.percRendaComprometida = ((this.totalDespesas * 100) / this.totalRendas);
