@@ -3,7 +3,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { NavController, ToastOptions, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { Observable } from 'rxjs/Observable';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, PercentPipe } from '@angular/common';
 
 @Component({
   selector: 'page-home',
@@ -43,11 +43,16 @@ export class HomePage {
     , private bancoProvider: BancoProvider
     , public toastCtrl: ToastController
     , private currencyPipe: CurrencyPipe
+    , private percentPipe: PercentPipe
   ) {
   }
 
   getCurrency(valor: number) {
     return this.currencyPipe.transform(valor, 'BRL', 'symbol', '1.2');
+  }
+
+  getPercent(valor: number) {
+    return this.percentPipe.transform(valor, '1.2');
   }
 
 
@@ -65,14 +70,27 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
+    let valorRendas: number;
+    let valorDespesas: number;
+    let valorRestante: number;
+    let valorPercRestante: number;
+    let valorPercComprometida: number;
+
     this.bancoProvider.calculaTotal();
-    this.totalRendas = this.getCurrency(Number(localStorage.getItem("totalRenda")));
+
+    valorRendas = Number(localStorage.getItem("totalRenda"));
+    valorDespesas = Number(localStorage.getItem("totalDespesa"));
+    valorRestante = valorRendas - valorDespesas;
+    valorPercComprometida = ((valorDespesas) / valorRendas);
+    valorPercRestante = (1 - valorPercComprometida);
+
+    this.totalRendas = this.getCurrency(valorRendas);
     console.log('A renda ficou assim: ', this.totalRendas);
-    //this.totalDespesas = localStorage.getItem("totalDespesa");
-    this.totalDespesas = this.getCurrency(Number(localStorage.getItem("totalDespesa")));
-    this.restanteValor = this.totalRendas - this.totalDespesas;
-    this.percRendaRestante = 0;
-    this.percRendaComprometida = ((this.totalDespesas * 100) / this.totalRendas);
+    this.totalDespesas = this.getCurrency(valorDespesas);
+    console.log('Fica assim totalDespesas: ', String(this.totalDespesas));
+    this.restanteValor = this.getCurrency(valorRestante);
+    this.percRendaComprometida = this.getPercent(valorPercComprometida);
+    this.percRendaRestante = this.getPercent(valorPercRestante);
   }
 
   loadData() {

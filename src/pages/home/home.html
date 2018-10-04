@@ -31,15 +31,25 @@
     <ion-list>
       <ion-item>
         <ion-label>Sobrou (R$)</ion-label>
-        <ion-input type="number" readonly [(ngModel)]="restanteValor" text-right></ion-input>
+        <ion-input readonly [(ngModel)]="restanteValor" text-right></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-card-header style="text-align: center">
+      Percentual
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>Comprometido</ion-label>
+        <ion-input readonly [(ngModel)]="percRendaComprometida" text-right></ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
-        
-    <ion-item>
-      <ion-label>% comprometido</ion-label>
-      <ion-input type="number" readonly [(ngModel)]="percRendaComprometida" text-right></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label>Livre</ion-label>
+        <ion-input readonly [(ngModel)]="percRendaRestante" text-right></ion-input>
+      </ion-item>
     </ion-list>
   </ion-card>
   <button ion-button block round (click)="valeAPena()">Calcular</button>

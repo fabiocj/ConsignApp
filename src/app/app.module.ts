@@ -17,14 +17,15 @@ import { BancoProvider } from '../providers/banco/banco';
 import { ConfigProvider } from '../providers/config/config';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { IonicStorageModule } from '@ionic/storage';
-import { DatePipe, CurrencyPipe } from '@angular/common';
+import { DatePipe, CurrencyPipe, PercentPipe, DecimalPipe } from '@angular/common';
 import { RendaPage } from '../pages/renda/renda';
 import { DespesaPage } from '../pages/despesa/despesa';
 import { EditPage } from '../pages/edit/edit';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-registerLocaleData(ptBr)
+//registerLocaleData(ptBr);
+registerLocaleData(ptBr, 'pt-BR');
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -69,13 +70,15 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     StatusBar
     , SplashScreen
     , { provide: ErrorHandler, useClass: IonicErrorHandler }
-    //, { provide: LOCALE_ID, useValue: 'pt-BR' }
+    //, { provide: LOCALE_ID, useValue: 'pt-PT' }
+    , { provide: LOCALE_ID, useValue: 'pt-BR' }
     , { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
-    , { provide: LOCALE_ID, useValue: 'pt-PT' }
     , BancoProvider
     , ConfigProvider
     , DatePipe
     , CurrencyPipe
+    , PercentPipe
+    , DecimalPipe
   ]
 })
 export class AppModule { }
