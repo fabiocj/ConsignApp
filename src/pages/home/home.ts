@@ -85,12 +85,15 @@ export class HomePage {
     valorPercRestante = (1 - valorPercComprometida);
 
     this.totalRendas = this.getCurrency(valorRendas);
-    console.log('A renda ficou assim: ', this.totalRendas);
+    console.log('A Renda ficou assim: ', this.totalRendas);
     this.totalDespesas = this.getCurrency(valorDespesas);
-    console.log('Fica assim totalDespesas: ', String(this.totalDespesas));
+    console.log('A Despesa ficou assim: ', String(this.totalDespesas));
     this.restanteValor = this.getCurrency(valorRestante);
+    console.log('O Resto ficou assim: ', String(this.restanteValor));
     this.percRendaComprometida = this.getPercent(valorPercComprometida);
+    console.log('O % Comprometido ficou assim: ', String(this.percRendaComprometida));
     this.percRendaRestante = this.getPercent(valorPercRestante);
+    console.log('O % Restante ficou assim: ', String(this.percRendaRestante));
   }
 
   loadData() {
@@ -112,29 +115,6 @@ export class HomePage {
       , position: 'bottom'
     }
     this.toastCtrl.create(this.toastOptions).present();
-  }
-
-  valeAPena() {
-    /*
-        this.rendaRestante = this.rendas.value - this.despesas.value;
-        this.valor = (this.rendas.value * 35) / 100;
-    
-        // percentual da renda comprometida
-        this.percentualComprometido = ((this.despesas.value * 100) / this.rendas.value);
-        this.percentualRestante = 100 - this.percentualComprometido;
-    
-        if (this.rendas.value == 0) {
-          this.showToast('Por favor, informe alguma renda!!');
-        } else {
-          if (this.valor < this.rendaRestante) {
-            this.resultado = "Vale a Pena!!";
-            this.hide = !this.hide;
-          } else {
-            this.resultado = "Não Vale a Pena!!";
-            this.hide = !this.hide;
-          }
-        }
-    */
   }
 
   ngIfCtrl() {

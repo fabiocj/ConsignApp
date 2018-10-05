@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class BancoProvider {
@@ -12,9 +14,14 @@ export class BancoProvider {
   totalBancoRenda = 0;
   totalBancoDespesa = 0;
 
+  public items: any;
+
+  baseSELIC: string = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json';
+
   constructor(
     public storage: Storage
     , private datePipe: DatePipe
+    , public http: HttpClient
   ) {
     console.log('Hello BancoProvider Provider');
   }
@@ -119,6 +126,16 @@ export class BancoProvider {
       console.log('Todos os dados foram apagados!');
       console.log('Feliz WIPE novo!');
     });
+  }
+
+
+  loadDataCIDATA() {
+    let data: Observable<any>;
+    data = this.http.get(this.baseSELIC);
+    console.log('baseDadosAbertos: ', data);
+    data.subscribe(results => {
+      this.items = results;
+    })
   }
 }
 
