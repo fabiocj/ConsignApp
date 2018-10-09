@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class BancoProvider {
@@ -18,12 +19,30 @@ export class BancoProvider {
 
   baseSELIC: string = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json';
 
+  // SELIC ao Dia
+  public selicADData: any;
+  public selicADValor: any;
+  // SELIC ao Mês
+  public selicAMData: any;
+  public selicAMValor: any;
+  // SELIC ao Ano
+  public selicAAData: any;
+  public selicAAValor: any;
+
+  basepath = "/bancoapi";
+
   constructor(
     public storage: Storage
     , private datePipe: DatePipe
     , public http: HttpClient
+    , private _platform: Platform
   ) {
     console.log('Hello BancoProvider Provider');
+
+    console.log("Plataforma: ", this._platform);
+    if (this._platform.is("mobile")) {
+      this.basepath = "https://api.bcb.gov.br";
+    }
   }
 
   public insert(caixa: Caixa) {
@@ -128,7 +147,7 @@ export class BancoProvider {
     });
   }
 
-
+  /*
   loadDataCIDATA() {
     let data: Observable<any>;
     data = this.http.get(this.baseSELIC);
@@ -137,6 +156,50 @@ export class BancoProvider {
       this.items = results;
     })
   }
+  */
+
+  loadDataCIDATA(selic: string) {
+    //this.bancoProvider.loadDataCIDATA();
+    let data: Observable<any>;
+    let link: string;
+    let resultados: any = [];
+    //Taxa de Juros SELIC A.D.: https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic
+    //Taxa de Juros SELIC A.M.: https://dadosabertos.bcb.gov.br/dataset/4390-taxa-de-juros---selic-acumulada-no-mes
+    //Taxa de Juros SELIC A.A.: https://dadosabertos.bcb.gov.br/dataset/1178-taxa-de-juros---selic-anualizada-base-252
+
+    if (selic == 'dia') {
+      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json';
+    } else if (selic == 'mes') {
+      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados/ultimos/1?formato=json';
+    } else if (selic == 'ano') {
+      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.1178/dados/ultimos/1?formato=json';
+    }
+    //data = this.http.get(`${this.basepath}/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json`);
+    data = this.http.get(link);
+
+    data.subscribe(results => {
+      this.items = results;
+      console.log('SELIC ao Dia: ', this.items);
+      //return this.items;
+      this.selicADData = this.items[0].data;
+      this.selicADValor = this.items[0].valor;
+      resultados.data = this.selicADData;
+      resultados.valor = this.selicADValor;
+      console.log('SELIC ao Dia Data: ', resultados.data);
+      console.log('SELIC ao Dia Valor: ', resultados.valor);
+    })
+    return resultados;
+
+    /*
+    console.log('baseDadosAbertos: ', data);
+    data.subscribe(results => {
+      this.items = results;
+    })
+    */
+
+
+  }
+
 }
 
 export class Caixa {
@@ -148,4 +211,9 @@ export class Caixa {
 export class CaixaList {
   key: string;
   caixa: Caixa;
+}
+
+export class Resultado {
+  data: string;
+  valor: string;
 }

@@ -3,5 +3,11 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/bancoapi",
+      "proxyUrl": "https://api.bcb.gov.br"
+    }
+  ]
 }

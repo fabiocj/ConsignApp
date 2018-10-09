@@ -31,6 +31,16 @@ export class HomePage {
   public toastOptions: ToastOptions;
   public toastMessage: string;
 
+  // SELIC ao Dia
+  public selicADData: any;
+  public selicADValor: any;
+  // SELIC ao Mês
+  public selicAMData: any;
+  public selicAMValor: any;
+  // SELIC ao Ano
+  public selicAAData: any;
+  public selicAAValor: any;
+
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
   @ViewChild('restanteValor') restanteValor;
@@ -45,7 +55,12 @@ export class HomePage {
     , private currencyPipe: CurrencyPipe
     , private percentPipe: PercentPipe
   ) {
+    let resultados: any = [];
+    resultados = bancoProvider.loadDataCIDATA('dia');
+    console.log('eh noix tchururu pá: ', resultados);
+    console.log('valor aqui: ', typeof(resultados));
   }
+
 
   getCurrency(valor: number) {
     return this.currencyPipe.transform(valor, 'BRL', 'symbol', '1.2');
