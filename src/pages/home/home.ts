@@ -55,12 +55,15 @@ export class HomePage {
     , private currencyPipe: CurrencyPipe
     , private percentPipe: PercentPipe
   ) {
-    let resultados: any = [];
-    resultados = bancoProvider.loadDataCIDATA('dia');
-    console.log('eh noix tchururu pá: ', resultados);
-    console.log('valor aqui: ', typeof(resultados));
-  }
+    //let resultados: any;
+    //resultados = bancoProvider.loadDataCIDATA('dia');
+    //console.log('eh noix tchururu pá: ', resultados);
+    //console.log('qual o tipo de resultados: ', typeof (resultados));
 
+    this.loadSelic();
+
+
+  }
 
   getCurrency(valor: number) {
     return this.currencyPipe.transform(valor, 'BRL', 'symbol', '1.2');
@@ -68,16 +71,6 @@ export class HomePage {
 
   getPercent(valor: number) {
     return this.percentPipe.transform(valor, '1.2');
-  }
-
-
-  getTotal(items, calculationProperty: string) {
-    if (typeof items !== 'undefined') {
-      return items.reduce((total, item) => {
-        return total + item[calculationProperty];
-      }, 0);
-    }
-    return 0;
   }
 
   ionViewDidLoad() {
@@ -117,6 +110,21 @@ export class HomePage {
     data.subscribe(results => {
       this.items = results;
     })
+  }
+
+  loadSelic() {
+    let selicDia = this.bancoProvider.getSelicDia().then(data => {
+      console.log('Dados do getSelicDia: ', data);
+      //do here what you want
+    });
+    let selicMes = this.bancoProvider.getSelicMes().then(data => {
+      console.log('Dados do getSelicMes: ', data);
+      //do here what you want
+    });
+    let selicAno = this.bancoProvider.getSelicAno().then(data => {
+      console.log('Dados do getSelicAno: ', data);
+      //do here what you want
+    });
   }
 
   itemClick(itemid: number) {
