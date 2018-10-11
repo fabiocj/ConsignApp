@@ -271,6 +271,50 @@ export class BancoProvider {
     console.log('teste do valor de this.data: ', this.data);
   }
 
+  loadSelicDia() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json');
+  }
+
+  loadSelicMes() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados/ultimos/1?formato=json');
+  }
+
+  loadSelicAno() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.1178/dados/ultimos/1?formato=json');
+  }
+
+  //Taxa média mensal de juros das operações de crédito com recursos livres - Pessoas físicas - Crédito pessoal consignado para trabalhadores do setor privado
+  loadCredPesConsigSetorPrivado() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.25466/dados/ultimos/1?formato=json');
+  }
+
+  //Taxa média mensal de juros das operações de crédito com recursos livres - Pessoas físicas - Crédito pessoal consignado para aposentados e pensionistas do INSS
+  loadCredPesConsigAposPenINSS() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.25468/dados/ultimos/1?formato=json');
+  }
+
+  //Taxa média mensal de juros das operações de crédito com recursos livres - Pessoas físicas - Crédito pessoal consignado total
+  loadCredPesConsigTotal() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.25469/dados/ultimos/1?formato=json');
+  }
+
+  //Taxa média mensal de juros das operações de crédito com recursos livres - Pessoas físicas - Crédito pessoal não consignado
+  loadCredPesNaoConsig() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.25464/dados/ultimos/1?formato=json');
+  }
+  //Taxa média mensal de juros das operações de crédito com recursos livres - Pessoas físicas - Cheque especial
+  loadChequeEspecial() {
+    let data: Observable<any>;
+    return data = this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.25463/dados/ultimos/1?formato=json');
+  }
+
 }
 
 export class Caixa {
@@ -284,13 +328,3 @@ export class CaixaList {
   caixa: Caixa;
 }
 
-export class Resultado {
-  key: string;
-  resultado: Resultado;
-}
-
-export class ResultadoList {
-  tipo: string;
-  data: string;
-  valor: string;
-}

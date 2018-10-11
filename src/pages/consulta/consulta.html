@@ -1,18 +1,56 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Consulta</ion-title>
+    <ion-title>Consulta de Taxas</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <button ion-button (click)="openPicker()">Open Picker</button>
-  <button ion-button (click)="openRemotePicker()">Open Remote JSON Picker</button>
-
-
-  <button ion-button block round (click)="loadDataCIDATA()">Carregar JSON</button>
+  <ion-card-header text-center>{{ consulta }}</ion-card-header>
   <ion-list>
-    <ion-item *ngFor='let item of items'>
-      <h1>{{item.data}}</h1>
-      {{item.valor}}
+    <ion-item>
+      <h2>Valor: {{ valor }}</h2>
+      <p>Última Atualização: {{ data }}</p>
     </ion-item>
   </ion-list>
+  <ion-card>
+    <ion-list>
+      <button ion-item (click)="selicDia()">
+        <ion-icon name="cart" item-start></ion-icon>
+        SELIC ao Dia
+      </button>
+      <button ion-item (click)="selicMes()">
+        <ion-icon name="medical" item-start></ion-icon>
+        SELIC ao Mês
+      </button>
+      <button ion-item (click)="selicAno()">
+        <ion-icon name="cafe" item-start></ion-icon>
+        SELIC ao Ano
+      </button>
+    </ion-list>
+    <ion-list>
+      <ion-card-header text-center>
+        Taxa média mensal de juros - PF
+        Crédito Pessoal
+      </ion-card-header>
+      <button ion-item (click)="credPesConsigSetorPrivado()">
+        <ion-icon name="paw" item-start></ion-icon>
+        Consignado para Trabalhadores do Setor Privado
+      </button>
+      <button ion-item (click)="credPesConsigAposPenINSS()">
+        <ion-icon name="analytics" item-start></ion-icon>
+        Consignado para Aposentados e Pensionistas do INSS
+      </button>
+      <button ion-item (click)="credPesConsigTotal()">
+        <ion-icon name="apps" item-start></ion-icon>
+        Consignado total
+      </button>
+      <button ion-item (click)="credPesNaoConsig()">
+        <ion-icon name="basket" item-start></ion-icon>
+        Não Consignado
+      </button>
+      <button ion-item (click)="chequeEspecial()">
+        <ion-icon name="bicycle" item-start></ion-icon>
+        Cheque Especial
+      </button>
+    </ion-list>
+  </ion-card>
 </ion-content>

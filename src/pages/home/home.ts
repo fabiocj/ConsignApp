@@ -68,7 +68,7 @@ export class HomePage {
     let ano = bancoProvider.getSelicAno();
     Promise.all([dia, mes, ano])
       .then((result: any) => {
-        let selicAnoData2: [] = result[2];
+        let selicAnoData2 = result[2];
         console.log('valor de teste dentro do then: ', selicAnoData2);
       });
 

@@ -6,7 +6,6 @@ import { DespesaPage } from '../despesa/despesa';
 import { RendaPage } from '../renda/renda';
 import { ConsultaPage } from '../consulta/consulta';
 
-
 @Component({
   templateUrl: 'tabs.html'
 })

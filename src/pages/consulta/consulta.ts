@@ -1,14 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
-
-const jsonData = {
-  consultas: [
-    { description: 'Selic ao Dia' }
-    , { description: 'Selic ao Mes' }
-    , { description: 'Selic ao Ano' }
-  ]
-};
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { BancoProvider } from '../../providers/banco/banco';
 
 
 @IonicPage()
@@ -17,83 +10,150 @@ const jsonData = {
   templateUrl: 'consulta.html',
 })
 export class ConsultaPage {
-  dummyJson = {
-    days: [
-      { description: 'Mon' },
-      { description: 'Tue' },
-      { description: 'Wed' },
-      { description: 'Thu' },
-      { description: 'Fri' }
-    ],
-    people: [
-      { description: 'Mike' },
-      { description: 'Max' },
-      { description: 'Adam' },
-      { description: 'Brandy' },
-      { description: 'Ben' }
-    ]
-  }
+
+  public items: any;
+  loading: any;
+
+  @ViewChild('consulta') consulta;
+  @ViewChild('data') data;
+  @ViewChild('valor') valor;
+
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
-    , private toastCtrl: ToastController
-    , private http: HttpClient
+    , private loadingCtrl: LoadingController
+    , public bancoProvider: BancoProvider
   ) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConsultaPage');
+    this.consulta = 'Taxa';
   }
 
-/*  
-  openPicker() {
-    this.selector.show({
-      title: 'Select Your Contact',
-      items: [
-        this.dummyJson.days,
-        this.dummyJson.people
-      ],
-      positiveButtonText: 'Choose',
-      negativeButtonText: 'Nah',
-      defaultItems: [
-        { index: 0, value: this.dummyJson.days[4].description },
-        { index: 1, value: this.dummyJson.people[1].description }
-      ]
-    }).then(
-      result => {
-        let msg = `Selected ${result[0].description} with ${result[1].description}`;
-        let toast = this.toastCtrl.create({
-          message: msg,
-          duration: 4000
-        });
-        toast.present();
-      },
-      err => console.log('Error: ', err)
-    );
+  carregarLoad() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Carregando...'
+      , spinner: 'circles'
+    });
+
+    this.loading.present();
   }
 
-  openRemotePicker() {
-    this.http.get('https://randomuser.me/api/?results=5').subscribe(res => {
-      this.selector.show({
-        title: 'Select Your Contact',
-        items: [
-          res['results']
-        ],
-        displayKey: 'email'
-      }).then(
-        result => {
-          let msg = `Selected ${result[0].email}`;
-          let toast = this.toastCtrl.create({
-            message: msg,
-            duration: 4000
-          });
-          toast.present();
-        },
-        err => console.log('Error: ', err)
-      );
-
+  selicDia() {
+    this.carregarLoad();
+    this.consulta = 'Taxa de Juros Selic ao Dia';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadSelicDia();
+    //console.log('baseDadosAbertos: ', data);
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+        //console.log('Resultado aqui do items data: ', this.items[0].data);
+        //console.log('Resultado aqui do items valor: ', this.items[0].valor);
+      })
     });
   }
-*/
+
+  selicMes() {
+    this.carregarLoad();
+    this.consulta = 'Taxa de Juros Selic ao Mês';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadSelicMes();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  selicAno() {
+    this.carregarLoad();
+    this.consulta = 'Taxa de Juros Selic ao Ano';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadSelicAno();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  credPesConsigSetorPrivado() {
+    this.carregarLoad();
+    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal Consignado para Trabalhadores do Setor Privado';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadCredPesConsigSetorPrivado();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  credPesConsigAposPenINSS() {
+    this.carregarLoad();
+    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal consignado para aposentados e pensionistas do INSS';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadCredPesConsigAposPenINSS();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  credPesConsigTotal() {
+    this.carregarLoad();
+    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal consignado total';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadCredPesConsigTotal();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  credPesNaoConsig() {
+    this.carregarLoad();
+    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal não consignado';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadCredPesNaoConsig();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
+
+  chequeEspecial() {
+    this.carregarLoad();
+    this.consulta = 'Taxa média mensal de juros - PF - Cheque especial';
+    let data: Observable<any>;
+    data = this.bancoProvider.loadChequeEspecial();
+    this.loading.dismiss().then(() => {
+      data.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+      })
+    });
+  }
 
 }
