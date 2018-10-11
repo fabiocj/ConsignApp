@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BancoProvider, Caixa } from '../../providers/banco/banco';
 import { CurrencyPipe } from '@angular/common';
+import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
 
 @IonicPage()
 @Component({
-  selector: 'page-edit',
-  templateUrl: 'edit.html',
+  selector: 'page-edit'
+  , templateUrl: 'edit.html'
+  , providers: [
+    BrMaskerIonic3
+  ]
 })
 export class EditPage {
   model: Caixa;
@@ -20,6 +24,7 @@ export class EditPage {
     , public navParams: NavParams
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
+    , public brMaskerIonic3: BrMaskerIonic3
   ) {
 
     this.origem = navParams.get('origem');
@@ -45,6 +50,7 @@ export class EditPage {
   }
 
   save() {
+    this.model.valor = Number(String(this.model.valor).replace(",", ""));
     if (this.model.descricao == null || this.model.descricao == '') {
       this.toastCtrl.create({
         message: 'Favor informar um Nome para a ' + this.origem + '!'

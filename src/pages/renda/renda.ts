@@ -27,6 +27,7 @@ export class RendaPage {
     this.bancoProvider.getAllRenda()
       .then(results => {
         this.caixas = results;
+        //console.log("valor das Rendas: ", this.caixas);
       });
   }
 

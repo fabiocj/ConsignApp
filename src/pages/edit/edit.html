@@ -11,12 +11,9 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Valor</ion-label>
-      <ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>
-    </ion-item>
-    <ion-item>
-      <input currencyMask name="valor2" [(ngModel)]="model.valor2" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+      <!--<ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>-->
+      <ion-input type="text" name="valor" maxlength="10" [(ngModel)]="model.valor" [brmasker]="{money: true, thousand: ',',  decimalCaracter: '.', decimal: '2'}"></ion-input>
     </ion-item>
   </ion-list>
-
   <button ion-button block (click)="save()">Salvar</button>
 </ion-content>

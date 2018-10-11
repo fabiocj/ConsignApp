@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { BancoProvider } from '../providers/banco/banco';
@@ -39,7 +40,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   thousands: "."
 };
 
-
 @NgModule({
   declarations: [
     MyApp
@@ -56,6 +56,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , HttpClientModule
     , IntroPageModule
     , CurrencyMaskModule
+    , BrMaskerModule
     , IonicModule.forRoot(MyApp)
     , IonicStorageModule.forRoot()
   ],
@@ -82,8 +83,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , DatePipe
     , CurrencyPipe
     , PercentPipe
-    , DecimalPipe,
-    DadosProvider
+    , DecimalPipe
+    , DadosProvider
   ]
 })
 export class AppModule { }
