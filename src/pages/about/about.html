@@ -4,14 +4,35 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <button ion-button block (click)="apagar()">Apagar Tudo</button>
-
-  <br>
-  <button ion-button block round (click)="loadDataCIDATA()">Carregar JSON</button>
-  <ion-list>
-    <ion-item *ngFor='let item of items'>
-      <h1>{{item.data}}</h1>
-      {{item.valor}}
+  <ion-card>
+    <ion-list text-center>
+      <ion-card-header>Concurso de Apps CIDATA</ion-card-header>
+      <h3>Uso de Dados para Cidadania Financeira</h3>
+      <br>
+      <p>http://www.cidadata.com.br/</p>
+      <br>
+      <br>
+      <p>Todos os dados podem ser consultados em:</p>
+      <br>
+      <p>https://dadosabertos.bcb.gov.br/</p>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-card-header text-center>Equipe: ConsignApp</ion-card-header>
+    <!--<ion-list-header>Equipe: ConsignApp</ion-list-header>-->
+    <ion-item>
+      <ion-icon name="md-contact" item-left></ion-icon>Antônio Yuri Menezes
     </ion-item>
-  </ion-list>
+    <ion-item>
+      <ion-icon name="md-contact" item-left></ion-icon>Fábio Correia
+    </ion-item>
+    <ion-item>
+      <ion-icon name="md-contact" item-left></ion-icon>Thiago Brito
+    </ion-item>
+    <ion-item>
+      <ion-icon name="md-contact" item-left></ion-icon>Vithor Tibiriçá
+    </ion-item>
+  </ion-card>
+  <br>
+  <button ion-button block color="danger" (click)="apagar()">Apagar Tudo</button>
 </ion-content>

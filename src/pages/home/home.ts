@@ -73,8 +73,6 @@ export class HomePage {
       });
 
     console.log('valor de teste fora: ', selicAnoData);
-
-
   }
 
   getCurrency(valor: number) {
@@ -150,10 +148,6 @@ export class HomePage {
       , position: 'bottom'
     }
     this.toastCtrl.create(this.toastOptions).present();
-  }
-
-  ngIfCtrl() {
-    this.hide = !this.hide;
   }
 
 }

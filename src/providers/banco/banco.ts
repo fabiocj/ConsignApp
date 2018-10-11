@@ -7,18 +7,17 @@ import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class BancoProvider {
-  private totalRenda: number = 0;
-  private totalDespesa: number = 0;
-  resultado: number = 0;
+
   caixasRendas: CaixaList[];
   caixasDespesas: CaixaList[];
+
+  private totalRenda: number = 0;
+  private totalDespesa: number = 0;
+  public items: any;
+
+  resultado: number = 0;
   totalBancoRenda = 0;
   totalBancoDespesa = 0;
-
-  public items: any;
-  data: any;
-
-  baseSELIC: string = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json';
 
   // SELIC
   public selicData: any;
@@ -151,17 +150,6 @@ export class BancoProvider {
     });
   }
 
-  /*
-  loadDataCIDATA() {
-    let data: Observable<any>;
-    data = this.http.get(this.baseSELIC);
-    console.log('baseDadosAbertos: ', data);
-    data.subscribe(results => {
-      this.items = results;
-    })
-  }
-  */
-
   loadDataCIDATA(selic: string) {
     //this.bancoProvider.loadDataCIDATA();
     let data: Observable<any>;
@@ -260,15 +248,6 @@ export class BancoProvider {
           },
         );
     });
-  }
-
-  getTeste() {
-    this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.1178/dados/ultimos/1?formato=json')
-      .subscribe((data) => {
-        this.data = data;
-      });
-
-    console.log('teste do valor de this.data: ', this.data);
   }
 
   loadSelicDia() {
