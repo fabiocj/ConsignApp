@@ -16,6 +16,7 @@ export class BancoProvider {
   totalBancoDespesa = 0;
 
   public items: any;
+  data: any;
 
   baseSELIC: string = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json';
 
@@ -259,6 +260,15 @@ export class BancoProvider {
           },
         );
     });
+  }
+
+  getTeste() {
+    this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.1178/dados/ultimos/1?formato=json')
+      .subscribe((data) => {
+        this.data = data;
+      });
+
+    console.log('teste do valor de this.data: ', this.data);
   }
 
 }

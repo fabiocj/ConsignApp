@@ -24,6 +24,7 @@ import { EditPage } from '../pages/edit/edit';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { DadosProvider } from '../providers/dados/dados';
 //registerLocaleData(ptBr);
 registerLocaleData(ptBr, 'pt-BR');
 
@@ -78,7 +79,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , DatePipe
     , CurrencyPipe
     , PercentPipe
-    , DecimalPipe
+    , DecimalPipe,
+    DadosProvider
   ]
 })
 export class AppModule { }

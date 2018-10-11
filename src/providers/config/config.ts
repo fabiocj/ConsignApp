@@ -9,6 +9,12 @@ export class ConfigProvider {
     showSlide: false
     , name: ""
     , userName: ""
+    , selicDiaData: ""
+    , selicDiaValor: ""
+    , selicMesData: ""
+    , selicMesValor: ""
+    , selicAnoData: ""
+    , selicAnoValor: ""
   }
 
   constructor(

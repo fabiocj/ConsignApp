@@ -55,12 +55,24 @@ export class HomePage {
     , private currencyPipe: CurrencyPipe
     , private percentPipe: PercentPipe
   ) {
-    //let resultados: any;
-    //resultados = bancoProvider.loadDataCIDATA('dia');
-    //console.log('eh noix tchururu pá: ', resultados);
-    //console.log('qual o tipo de resultados: ', typeof (resultados));
+    let resultados: any;
+    let selicAnoData: any = 'hehe';
+
+    resultados = bancoProvider.loadDataCIDATA('dia');
+    console.log('eh noix tchururu pá: ', resultados);
+    console.log('qual o tipo de resultados: ', typeof (resultados));
 
     this.loadSelic();
+    let dia = bancoProvider.getSelicDia();
+    let mes = bancoProvider.getSelicMes();
+    let ano = bancoProvider.getSelicAno();
+    Promise.all([dia, mes, ano])
+      .then((result: any) => {
+        let selicAnoData2: [] = result[2];
+        console.log('valor de teste dentro do then: ', selicAnoData2);
+      });
+
+    console.log('valor de teste fora: ', selicAnoData);
 
 
   }
