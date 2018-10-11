@@ -18,8 +18,9 @@ export class DadosProvider {
 
   constructor(
     public http: HttpClient
-    , private bancoProvider: BancoProvider) {
-    console.log('Hello DadosProvider Provider');
+    , private bancoProvider: BancoProvider
+  ) {
+    //console.log('Hello DadosProvider Provider');
   }
 
   // Recupera os dados do localstorage
@@ -61,14 +62,14 @@ export class DadosProvider {
       console.log('Dados do getSelicAno: ', data);
       //do here what you want
     });
-/*
-    dados.selicDiaData = selicDiaData;
-    dados.selicDiaValor = selicDiaValor;
-    dados.selicMesData = selicMesData;
-    dados.selicMesValor = selicMesValor;
-    dados.selicAnoData = selicAnoData;
-    dados.selicAnoValor = selicAnoValor;
-    */
+    /*
+        dados.selicDiaData = selicDiaData;
+        dados.selicDiaValor = selicDiaValor;
+        dados.selicMesData = selicMesData;
+        dados.selicMesValor = selicMesValor;
+        dados.selicAnoData = selicAnoData;
+        dados.selicAnoValor = selicAnoValor;
+        */
 
     localStorage.setItem(dados_key_name, JSON.stringify(dados));
   }

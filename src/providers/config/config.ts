@@ -19,7 +19,7 @@ export class ConfigProvider {
 
   constructor(
   ) {
-    console.log('Hello ConfigProvider Provider');
+    //console.log('Hello ConfigProvider Provider');
   }
 
   // Recupera os dados do localstorage

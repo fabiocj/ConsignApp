@@ -20,17 +20,16 @@ export class EditPage {
     , public navParams: NavParams
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
-    , private currencyPipe: CurrencyPipe
   ) {
 
     this.origem = navParams.get('origem');
     this.transacao = navParams.get('transacao');
     if (this.origem == "Renda") {
       this.tipo = true;
-      console.log("É RENDAAAAA! :)");
+      //console.log("É RENDAAAAA! :)");
     } else {
       this.tipo = false;
-      console.log("É DESPESA! :(");
+      //console.log("É DESPESA! :(");
     }
 
     if (this.navParams.data.caixa && this.navParams.data.key) {
@@ -42,7 +41,7 @@ export class EditPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditPage');
+    //console.log('ionViewDidLoad EditPage');
   }
 
   save() {

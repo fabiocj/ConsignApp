@@ -28,7 +28,7 @@ export class ConsultaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConsultaPage');
+    //console.log('ionViewDidLoad ConsultaPage');
     this.consulta = 'Taxa';
   }
 

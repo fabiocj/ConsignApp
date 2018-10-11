@@ -20,7 +20,7 @@ export class DespesaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DespesaPage');
+    //console.log('ionViewDidLoad DespesaPage');
   }
 
   ionViewDidEnter() {

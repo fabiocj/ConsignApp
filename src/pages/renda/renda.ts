@@ -20,7 +20,7 @@ export class RendaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RendaPage');
+    //console.log('ionViewDidLoad RendaPage');
   }
 
   ionViewDidEnter() {

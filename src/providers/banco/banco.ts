@@ -40,9 +40,8 @@ export class BancoProvider {
     , public http: HttpClient
     , private _platform: Platform
   ) {
-    console.log('Hello BancoProvider Provider');
-
-    console.log("Dados da Plataforma Local: ", this._platform);
+    //console.log('Hello BancoProvider Provider');
+    //console.log("Dados da Plataforma Local: ", this._platform);
     if (this._platform.is("mobile")) {
       this.basepath = "https://api.bcb.gov.br";
     }
@@ -139,8 +138,8 @@ export class BancoProvider {
 
   public calculaTotal() {
     this.getAll();
-    console.log('total Rendas: ', localStorage.getItem("totalRenda"));
-    console.log('total Despesas: ', localStorage.getItem("totalDespesa"));
+    //console.log('total Rendas: ', localStorage.getItem("totalRenda"));
+    //console.log('total Despesas: ', localStorage.getItem("totalDespesa"));
   }
 
   public hardReset() {
@@ -151,30 +150,11 @@ export class BancoProvider {
   }
 
   loadDataCIDATA(selic: string) {
-    //this.bancoProvider.loadDataCIDATA();
+    /*//this.bancoProvider.loadDataCIDATA();
     let data: Observable<any>;
     let link: string;
     let resultados: any[] = [];
     let array1 = [];
-    //Taxa de Juros SELIC A.D.: https://dadosabertos.bcb.gov.br/dataset/11-taxa-de-juros---selic
-    //Taxa de Juros SELIC A.M.: https://dadosabertos.bcb.gov.br/dataset/4390-taxa-de-juros---selic-acumulada-no-mes
-    //Taxa de Juros SELIC A.A.: https://dadosabertos.bcb.gov.br/dataset/1178-taxa-de-juros---selic-anualizada-base-252
-
-    if (selic == 'dia') {
-      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json';
-    } else if (selic == 'mes') {
-      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados/ultimos/1?formato=json';
-    } else if (selic == 'ano') {
-      link = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.1178/dados/ultimos/1?formato=json';
-    }
-    //data = this.http.get(`${this.basepath}/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json`);
-    data = this.http.get(link);
-
-    console.log('Console logo após get do Link: ', data);
-    data
-      .subscribe(
-        resultados => this.items = resultados);
-
 
     data.subscribe(results => {
       this.items = results;
@@ -199,7 +179,6 @@ export class BancoProvider {
     console.log('vamos ao primeiro valor do array1: ', array1[1]);
     return array1;
 
-    /*
     console.log('baseDadosAbertos: ', data);
     data.subscribe(results => {
       this.items = results;

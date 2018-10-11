@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       ConsignApp
     </ion-title>
@@ -25,19 +25,16 @@
     </ion-list>
   </ion-card>
   <ion-card>
-    <ion-card-header style="text-align: center">
-      Restante
-    </ion-card-header>
     <ion-list>
       <ion-item>
-        <ion-label>Sobrou (R$)</ion-label>
+        <ion-label>Restante (R$)</ion-label>
         <ion-input readonly [(ngModel)]="restanteValor" text-right></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
   <ion-card>
     <ion-card-header style="text-align: center">
-      Percentual
+      Percentual da Renda
     </ion-card-header>
     <ion-list>
       <ion-item>

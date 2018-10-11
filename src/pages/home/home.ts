@@ -55,14 +55,9 @@ export class HomePage {
     , private currencyPipe: CurrencyPipe
     , private percentPipe: PercentPipe
   ) {
-    let resultados: any;
-    let selicAnoData: any = 'hehe';
-
-    resultados = bancoProvider.loadDataCIDATA('dia');
-    console.log('eh noix tchururu pá: ', resultados);
-    console.log('qual o tipo de resultados: ', typeof (resultados));
 
     this.loadSelic();
+
     let dia = bancoProvider.getSelicDia();
     let mes = bancoProvider.getSelicMes();
     let ano = bancoProvider.getSelicAno();
@@ -71,8 +66,6 @@ export class HomePage {
         let selicAnoData2 = result[2];
         console.log('valor de teste dentro do then: ', selicAnoData2);
       });
-
-    console.log('valor de teste fora: ', selicAnoData);
   }
 
   getCurrency(valor: number) {
@@ -84,7 +77,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    //console.log('ionViewDidLoad HomePage');
   }
 
   ionViewDidEnter() {
@@ -103,15 +96,15 @@ export class HomePage {
     valorPercRestante = (1 - valorPercComprometida);
 
     this.totalRendas = this.getCurrency(valorRendas);
-    console.log('A Renda ficou assim: ', this.totalRendas);
+    //console.log('A Renda ficou assim: ', this.totalRendas);
     this.totalDespesas = this.getCurrency(valorDespesas);
-    console.log('A Despesa ficou assim: ', String(this.totalDespesas));
+    //console.log('A Despesa ficou assim: ', String(this.totalDespesas));
     this.restanteValor = this.getCurrency(valorRestante);
-    console.log('O Resto ficou assim: ', String(this.restanteValor));
+    //console.log('O Resto ficou assim: ', String(this.restanteValor));
     this.percRendaComprometida = this.getPercent(valorPercComprometida);
-    console.log('O % Comprometido ficou assim: ', String(this.percRendaComprometida));
+    //console.log('O % Comprometido ficou assim: ', String(this.percRendaComprometida));
     this.percRendaRestante = this.getPercent(valorPercRestante);
-    console.log('O % Restante ficou assim: ', String(this.percRendaRestante));
+    //console.log('O % Restante ficou assim: ', String(this.percRendaRestante));
   }
 
   loadData() {
@@ -125,15 +118,12 @@ export class HomePage {
   loadSelic() {
     let selicDia = this.bancoProvider.getSelicDia().then(data => {
       console.log('Dados do getSelicDia: ', data);
-      //do here what you want
     });
     let selicMes = this.bancoProvider.getSelicMes().then(data => {
       console.log('Dados do getSelicMes: ', data);
-      //do here what you want
     });
     let selicAno = this.bancoProvider.getSelicAno().then(data => {
       console.log('Dados do getSelicAno: ', data);
-      //do here what you want
     });
   }
 
