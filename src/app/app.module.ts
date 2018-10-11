@@ -25,6 +25,7 @@ import { EditPage } from '../pages/edit/edit';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { DadosProvider } from '../providers/dados/dados';
+import { ConsultaPage } from '../pages/consulta/consulta';
 //registerLocaleData(ptBr);
 registerLocaleData(ptBr, 'pt-BR');
 
@@ -48,6 +49,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , RendaPage
     , DespesaPage
     , EditPage
+    , ConsultaPage
   ],
   imports: [
     BrowserModule
@@ -66,6 +68,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , RendaPage
     , DespesaPage
     , EditPage
+    , ConsultaPage
   ],
   providers: [
     StatusBar
