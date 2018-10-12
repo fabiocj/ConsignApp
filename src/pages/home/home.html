@@ -1,25 +1,25 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="primary" text-center>
     <ion-title>
-      ConsignApp
+      Consign<i>App</i>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-    <ion-card-header style="text-align: center">
+    <ion-card-header style="text-align: center" class="cabecalho">
       Cálculo Rápido
     </ion-card-header>
     <ion-list>
       <ion-item>
-        <ion-label>Renda (R$)</ion-label>
+        <ion-label>Renda</ion-label>
         <ion-input readonly [(ngModel)]="totalRendas" text-right></ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
-        <ion-label>Despesas (R$)</ion-label>
+        <ion-label>Despesas</ion-label>
         <ion-input readonly [(ngModel)]="totalDespesas" text-right></ion-input>
       </ion-item>
     </ion-list>
@@ -27,13 +27,13 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-label>Restante (R$)</ion-label>
+        <ion-label>Restante</ion-label>
         <ion-input readonly [(ngModel)]="restanteValor" text-right></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
   <ion-card>
-    <ion-card-header style="text-align: center">
+    <ion-card-header style="text-align: center" class="cabecalho">
       Percentual da Renda
     </ion-card-header>
     <ion-list>
