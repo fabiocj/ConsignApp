@@ -56,8 +56,9 @@ export class HomePage {
     , private percentPipe: PercentPipe
   ) {
 
-    this.loadSelic();
+    //this.loadSelic();
 
+    /*
     let dia = bancoProvider.getSelicDia();
     let mes = bancoProvider.getSelicMes();
     let ano = bancoProvider.getSelicAno();
@@ -66,6 +67,7 @@ export class HomePage {
         let selicAnoData2 = result[2];
         console.log('valor de teste dentro do then: ', selicAnoData2);
       });
+    */
   }
 
   getCurrency(valor: number) {
@@ -107,6 +109,7 @@ export class HomePage {
     //console.log('O % Restante ficou assim: ', String(this.percRendaRestante));
   }
 
+  /*
   loadData() {
     let data: Observable<any>;
     data = this.http.get('https://jsonplaceholder.typicode.com/posts');
@@ -114,18 +117,21 @@ export class HomePage {
       this.items = results;
     })
   }
+  */
 
+  /*
   loadSelic() {
     let selicDia = this.bancoProvider.getSelicDia().then(data => {
-      console.log('Dados do getSelicDia: ', data);
+      //console.log('Dados do getSelicDia: ', data);
     });
     let selicMes = this.bancoProvider.getSelicMes().then(data => {
-      console.log('Dados do getSelicMes: ', data);
+      //console.log('Dados do getSelicMes: ', data);
     });
     let selicAno = this.bancoProvider.getSelicAno().then(data => {
-      console.log('Dados do getSelicAno: ', data);
+      //console.log('Dados do getSelicAno: ', data);
     });
   }
+  */
 
   itemClick(itemid: number) {
     alert(itemid);

@@ -5,18 +5,18 @@
 </ion-header>
 <ion-content padding>
   <ion-card>
-    <ion-list text-center>
-      <ion-card-header>Concurso de Apps CIDATA</ion-card-header>
-      <h3>Uso de Dados para Cidadania Financeira</h3>
-      <p>http://www.cidadata.com.br/</p>
+    <ion-card-header class="cabecalho">Concurso de Apps CIDATA</ion-card-header>
+    <ion-card-content text-center>
       <br>
+      <h2>Uso de Dados para Cidadania Financeira</h2>
+      <p>http://www.cidadata.com.br/</p>
       <br>
       <p>Todos os dados podem ser consultados em:</p>
       <p>https://dadosabertos.bcb.gov.br/</p>
-    </ion-list>
+    </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header text-center>Equipe: ConsignApp</ion-card-header>
+    <ion-card-header class="cabecalho">Equipe: ConsignApp</ion-card-header>
     <!--<ion-list-header>Equipe: ConsignApp</ion-list-header>-->
     <ion-item>
       <ion-icon name="md-contact" item-left></ion-icon>Antônio Yuri Menezes
@@ -33,5 +33,5 @@
   </ion-card>
   <br>
   <button ion-button block color="danger" (click)="apagar()">Apagar Dados</button>
-  <p>Clique para apagar todos os Dados do App!</p>
+  <p text-center>Clique para apagar todos os Dados do App!</p>
 </ion-content>

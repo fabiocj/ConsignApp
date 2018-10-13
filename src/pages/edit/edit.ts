@@ -50,26 +50,26 @@ export class EditPage {
   }
 
   save() {
-    this.model.valor = Number(String(this.model.valor).replace(",", ""));
     if (this.model.descricao == null || this.model.descricao == '') {
       this.toastCtrl.create({
         message: 'Favor informar um Nome para a ' + this.origem + '!'
         , duration: 3000
-        , position: 'bottom'
+        , position: 'top'
       }).present();
     } else if (this.model.valor == null || this.model.valor == 0) {
       this.toastCtrl.create({
         message: 'Favor informar um Valor para a ' + this.origem + '!'
         , duration: 3000
-        , position: 'bottom'
+        , position: 'top'
       }).present();
     } else {
+      this.model.valor = Number(String(this.model.valor).replace(",", ""));
       this.saveCaixa()
         .then(() => {
           this.toastCtrl.create({
             message: this.origem + ' salva!'
             , duration: 3000
-            , position: 'bottom'
+            , position: 'top'
           }).present();
           this.navCtrl.pop();
         })
@@ -77,7 +77,7 @@ export class EditPage {
           this.toastCtrl.create({
             message: 'Erro ao salvar a ' + this.origem + '!'
             , duration: 3000
-            , position: 'bottom'
+            , position: 'top'
           }).present();
         })
     }

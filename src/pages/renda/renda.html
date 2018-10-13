@@ -3,21 +3,12 @@
     <ion-title>Rendas</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let item of caixas">
       <ion-item>
-        <ion-card-content>
-          <ion-row>
-            <ion-col text-left>
-              <h1>{{ item.caixa.descricao }}</h1>
-            </ion-col>
-            <ion-col text-right>
-              <h1>{{item.caixa.valor | currency:'BRL':'symbol':'1.2'}}</h1>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
+        <h1>{{ item.caixa.descricao }}</h1>
+        <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeRenda(item);">
@@ -29,6 +20,11 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addRenda()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-fab bottom right>
     <button ion-fab (click)="addRenda()">
       <ion-icon name="add"></ion-icon>

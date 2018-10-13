@@ -149,8 +149,9 @@ export class BancoProvider {
     });
   }
 
+  /*
   loadDataCIDATA(selic: string) {
-    /*//this.bancoProvider.loadDataCIDATA();
+    //this.bancoProvider.loadDataCIDATA();
     let data: Observable<any>;
     let link: string;
     let resultados: any[] = [];
@@ -183,10 +184,10 @@ export class BancoProvider {
     data.subscribe(results => {
       this.items = results;
     })
-    */
 
   }
-
+  */
+  /*
   getSelicDia() {
     return new Promise((resolve, reject) => {
       this.http.get('https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json')
@@ -228,6 +229,7 @@ export class BancoProvider {
         );
     });
   }
+  */
 
   loadSelicDia() {
     let data: Observable<any>;
