@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { Observable } from 'rxjs/Observable';
 import { BancoProvider } from '../../providers/banco/banco';
 
-
 @IonicPage()
 @Component({
   selector: 'page-consulta',

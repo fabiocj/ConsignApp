@@ -47,7 +47,7 @@ export class RendaPage {
 
         this.toastCtrl.create({
           message: 'Renda removida!'
-          , duration: 3000
+          , duration: 2000
           , position: 'bottom'
         }).present();
       });

@@ -46,7 +46,7 @@ export class DespesaPage {
 
         this.toastCtrl.create({
           message: 'Despesa removida!'
-          , duration: 3000
+          , duration: 2000
           , position: 'bottom'
         }).present();
       });

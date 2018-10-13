@@ -53,14 +53,14 @@ export class EditPage {
     if (this.model.descricao == null || this.model.descricao == '') {
       this.toastCtrl.create({
         message: 'Favor informar um Nome para a ' + this.origem + '!'
-        , duration: 3000
-        , position: 'top'
+        , duration: 2000
+        , position: 'bottom'
       }).present();
     } else if (this.model.valor == null || this.model.valor == 0) {
       this.toastCtrl.create({
         message: 'Favor informar um Valor para a ' + this.origem + '!'
-        , duration: 3000
-        , position: 'top'
+        , duration: 2000
+        , position: 'bottom'
       }).present();
     } else {
       this.model.valor = Number(String(this.model.valor).replace(",", ""));
@@ -68,16 +68,16 @@ export class EditPage {
         .then(() => {
           this.toastCtrl.create({
             message: this.origem + ' salva!'
-            , duration: 3000
-            , position: 'top'
+            , duration: 2000
+            , position: 'bottom'
           }).present();
           this.navCtrl.pop();
         })
         .catch(() => {
           this.toastCtrl.create({
             message: 'Erro ao salvar a ' + this.origem + '!'
-            , duration: 3000
-            , position: 'top'
+            , duration: 2000
+            , position: 'bottom'
           }).present();
         })
     }

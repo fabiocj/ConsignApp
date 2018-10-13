@@ -4,25 +4,37 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-card-header text-center>{{ consulta }}</ion-card-header>
-  <ion-list>
+  <ion-card>
+    <ion-card-header text-center>{{ consulta }}</ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <h2>Valor: {{ valor }}</h2>
+        <p>Última Atualização: {{ data }}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
     <ion-item>
-      <h2>Valor: {{ valor }}</h2>
-      <p>Última Atualização: {{ data }}</p>
+      <ion-label>Taxa Selic</ion-label>
+      <ion-select interface="popover">
+        <ion-option value="ano">Ano</ion-option>
+        <ion-option value="mes">Mês</ion-option>
+        <ion-option value="dia">Dia</ion-option>
+      </ion-select>
     </ion-item>
-  </ion-list>
+  </ion-card>
   <ion-card>
     <ion-list>
       <button ion-item (click)="selicDia()">
-        <ion-icon name="cart" item-start></ion-icon>
+        <ion-icon name="pulse" item-start></ion-icon>
         SELIC ao Dia
       </button>
       <button ion-item (click)="selicMes()">
-        <ion-icon name="medical" item-start></ion-icon>
+        <ion-icon name="podium" item-start></ion-icon>
         SELIC ao Mês
       </button>
       <button ion-item (click)="selicAno()">
-        <ion-icon name="cafe" item-start></ion-icon>
+        <ion-icon name="stats" item-start></ion-icon>
         SELIC ao Ano
       </button>
     </ion-list>
@@ -32,11 +44,11 @@
         Crédito Pessoal
       </ion-card-header>
       <button ion-item (click)="credPesConsigSetorPrivado()">
-        <ion-icon name="paw" item-start></ion-icon>
+        <ion-icon name="trending-up" item-start></ion-icon>
         Consignado para Trabalhadores do Setor Privado
       </button>
       <button ion-item (click)="credPesConsigAposPenINSS()">
-        <ion-icon name="analytics" item-start></ion-icon>
+        <ion-icon name="trending-down" item-start></ion-icon>
         Consignado para Aposentados e Pensionistas do INSS
       </button>
       <button ion-item (click)="credPesConsigTotal()">
