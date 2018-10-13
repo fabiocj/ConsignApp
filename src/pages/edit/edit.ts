@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BancoProvider, Caixa } from '../../providers/banco/banco';
-import { CurrencyPipe } from '@angular/common';
-import { BrMaskerIonic3, BrMaskModel } from 'brmasker-ionic-3';
+import { BrMaskerIonic3 } from 'brmasker-ionic-3';
 
 @IonicPage()
 @Component({
