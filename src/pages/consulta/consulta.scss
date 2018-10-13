@@ -1,3 +1,17 @@
 page-consulta {
-
+    .taxas {
+        border-radius: 10px;
+        word-wrap: normal;
+        text-align: center;
+        background-color: #33B55B;
+        color: white;
+        height: 45px;
+        font-size: 14px;
+    }
+    .item {
+        margin:10px auto;
+    }
+    .margem {
+        margin-bottom: -30px !important;
+    }
 }

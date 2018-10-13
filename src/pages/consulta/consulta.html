@@ -5,64 +5,46 @@
 </ion-header>
 <ion-content padding>
   <ion-card>
-    <ion-card-header text-center>{{ consulta }}</ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <h2>Valor: {{ valor }}</h2>
-        <p>Última Atualização: {{ data }}</p>
+    <ion-card-header text-wrap text-center>Taxa Selic</ion-card-header>
+    <ion-row text-center>
+      <ion-col>
+        <button ion-button icon-left small (click)="dados('selicDia')">
+          <ion-icon name="md-calendar"></ion-icon>
+          <div>Dia</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left small (click)="dados('selicMes')">
+          <ion-icon name="ios-calendar-outline"></ion-icon>
+          <div>Mês</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left small (click)="dados('selicAno')">
+          <ion-icon name="ios-calendar"></ion-icon>
+          <div>Ano</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card>
+    <ion-card-header text-wrap text-center class="margem">Taxa Média Mensal de Juros - Crédito Pessoal Pessoa Física</ion-card-header>
+    <ion-list padding>
+      <ion-item class="taxas" (click)="dados('credPesConsigSetorPrivado')">
+        <div text-wrap>Consignado Trabalhadores do Setor Privado</div>
       </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-label>Taxa Selic</ion-label>
-      <ion-select interface="popover">
-        <ion-option value="ano">Ano</ion-option>
-        <ion-option value="mes">Mês</ion-option>
-        <ion-option value="dia">Dia</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-card>
-  <ion-card>
-    <ion-list>
-      <button ion-item (click)="selicDia()">
-        <ion-icon name="pulse" item-start></ion-icon>
-        SELIC ao Dia
-      </button>
-      <button ion-item (click)="selicMes()">
-        <ion-icon name="podium" item-start></ion-icon>
-        SELIC ao Mês
-      </button>
-      <button ion-item (click)="selicAno()">
-        <ion-icon name="stats" item-start></ion-icon>
-        SELIC ao Ano
-      </button>
-    </ion-list>
-    <ion-list>
-      <ion-card-header text-center>
-        Taxa média mensal de juros - PF
-        Crédito Pessoal
-      </ion-card-header>
-      <button ion-item (click)="credPesConsigSetorPrivado()">
-        <ion-icon name="trending-up" item-start></ion-icon>
-        Consignado para Trabalhadores do Setor Privado
-      </button>
-      <button ion-item (click)="credPesConsigAposPenINSS()">
-        <ion-icon name="trending-down" item-start></ion-icon>
-        Consignado para Aposentados e Pensionistas do INSS
-      </button>
-      <button ion-item (click)="credPesConsigTotal()">
-        <ion-icon name="apps" item-start></ion-icon>
-        Consignado total
-      </button>
-      <button ion-item (click)="credPesNaoConsig()">
-        <ion-icon name="basket" item-start></ion-icon>
-        Não Consignado
-      </button>
-      <button ion-item (click)="chequeEspecial()">
-        <ion-icon name="bicycle" item-start></ion-icon>
-        Cheque Especial
-      </button>
+      <ion-item class="taxas" (click)="dados('credPesConsigAposPenINSS')">
+        <div text-wrap>Consignado Aposentados e Pensionistas do INSS</div>
+      </ion-item>
+      <ion-item class="taxas" (click)="dados('credPesConsigTotal')">
+        <div text-wrap>Consignado Total</div>
+      </ion-item>
+      <ion-item class="taxas" (click)="dados('credPesNaoConsig')">
+        <div text-wrap>Não Consignado</div>
+      </ion-item>
+      <ion-item class="taxas" (click)="dados('chequeEspecial')">
+        <div text-wrap>Cheque Especial</div>
+      </ion-item>
     </ion-list>
   </ion-card>
 </ion-content>

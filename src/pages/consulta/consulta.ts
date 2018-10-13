@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { BancoProvider } from '../../providers/banco/banco';
 
@@ -11,24 +11,68 @@ import { BancoProvider } from '../../providers/banco/banco';
 export class ConsultaPage {
 
   public items: any;
+  public data;
+  public valor;
   loading: any;
-
-  @ViewChild('consulta') consulta;
-  @ViewChild('data') data;
-  @ViewChild('valor') valor;
 
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
     , private loadingCtrl: LoadingController
     , public bancoProvider: BancoProvider
+    , private toastCtrl: ToastController
   ) {
 
   }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ConsultaPage');
-    this.consulta = 'Taxa';
+  }
+
+  dados(consulta: string) {
+    let dados: Observable<any>;
+    let texto: string;
+    this.carregarLoad();
+
+    if (consulta == 'selicDia' ) {
+      dados = this.bancoProvider.loadSelicDia();
+      texto = 'Taxa de Juros Selic ao Dia';
+    } else if (consulta == 'selicMes') {
+      dados = this.bancoProvider.loadSelicMes();
+      texto = 'Taxa de Juros Selic ao Mês';
+    } else if (consulta == 'selicAno') {
+      dados = this.bancoProvider.loadSelicAno();
+      texto = 'Taxa de Juros Selic ao Ano';
+    } else if (consulta == 'credPesConsigSetorPrivado') {
+      dados = this.bancoProvider.loadCredPesConsigSetorPrivado();
+      texto = 'Taxa Média Mensal de Juros - Pessoa Física - Crédito Pessoal Consignado para Trabalhadores do Setor Privado';
+    } else if (consulta == 'credPesConsigAposPenINSS') {
+      dados = this.bancoProvider.loadCredPesConsigAposPenINSS();
+      texto = 'Taxa Média Mensal de Juros - Pessoa Física - Crédito Pessoal Consignado para Aposentados e Pensionistas do INSS';
+    } else if (consulta == 'credPesConsigTotal') {
+      dados = this.bancoProvider.loadCredPesConsigTotal();
+      texto = 'Taxa Média Mensal de Juros - Pessoa Física - Crédito Pessoal Consignado Total';
+    } else if (consulta == 'credPesNaoConsig') {
+      dados = this.bancoProvider.loadCredPesNaoConsig();
+      texto = 'Taxa Média Mensal de Juros - Pessoa Física - Crédito Pessoal Não Consignado';
+    } else if (consulta == 'chequeEspecial') {
+      dados = this.bancoProvider.loadChequeEspecial();
+      texto = 'Taxa Média Mensal de Juros - Pessoa Física - Cheque Especial';
+    }
+    //console.log('baseDadosAbertos: ', dados);
+    this.loading.dismiss().then(() => {
+      dados.subscribe(results => {
+        this.items = results;
+        this.data = this.items[0].data;
+        this.valor = this.items[0].valor;
+        this.toastCtrl.create({
+          message: `A ${texto} é: ${this.valor}% com a última atualização em: ${this.data}.`
+          , duration: 6000
+          , position: 'bottom'
+        }).present();
+      });
+    })
+
   }
 
   carregarLoad() {
@@ -36,123 +80,7 @@ export class ConsultaPage {
       content: 'Carregando...'
       , spinner: 'circles'
     });
-
     this.loading.present();
-  }
-
-  selicDia() {
-    this.carregarLoad();
-    this.consulta = 'Taxa de Juros Selic ao Dia';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadSelicDia();
-    //console.log('baseDadosAbertos: ', data);
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-        //console.log('Resultado aqui do items data: ', this.items[0].data);
-        //console.log('Resultado aqui do items valor: ', this.items[0].valor);
-      })
-    });
-  }
-
-  selicMes() {
-    this.carregarLoad();
-    this.consulta = 'Taxa de Juros Selic ao Mês';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadSelicMes();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  selicAno() {
-    this.carregarLoad();
-    this.consulta = 'Taxa de Juros Selic ao Ano';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadSelicAno();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  credPesConsigSetorPrivado() {
-    this.carregarLoad();
-    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal Consignado para Trabalhadores do Setor Privado';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadCredPesConsigSetorPrivado();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  credPesConsigAposPenINSS() {
-    this.carregarLoad();
-    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal consignado para aposentados e pensionistas do INSS';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadCredPesConsigAposPenINSS();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  credPesConsigTotal() {
-    this.carregarLoad();
-    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal consignado total';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadCredPesConsigTotal();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  credPesNaoConsig() {
-    this.carregarLoad();
-    this.consulta = 'Taxa média mensal de juros - PF - Crédito pessoal não consignado';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadCredPesNaoConsig();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
-  }
-
-  chequeEspecial() {
-    this.carregarLoad();
-    this.consulta = 'Taxa média mensal de juros - PF - Cheque especial';
-    let data: Observable<any>;
-    data = this.bancoProvider.loadChequeEspecial();
-    this.loading.dismiss().then(() => {
-      data.subscribe(results => {
-        this.items = results;
-        this.data = this.items[0].data;
-        this.valor = this.items[0].valor;
-      })
-    });
   }
 
 }
