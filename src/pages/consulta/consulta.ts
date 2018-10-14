@@ -64,9 +64,10 @@ export class ConsultaPage {
         this.data = this.items[0].data;
         this.valor = this.items[0].valor;
         this.toastCtrl.create({
-          message: `A ${texto} é: ${this.valor}% com a última atualização em: ${this.data}.`
+          message: `${texto}: ${this.valor}%, última atualização em: ${this.data}.`
           , duration: 6000
           , position: 'bottom'
+          , cssClass: "normalToast"
         }).present();
       });
     })

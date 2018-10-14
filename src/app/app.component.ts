@@ -27,16 +27,16 @@ export class MyApp {
     platform.ready().then(() => {
       let config = configProvider.getConfigData();
 
-      console.log('Valor config: ', config);
+      //console.log('Valor config: ', config);
       this.rootPage = IntroPage;
-      /*
+      
       if (config == null) {
         this.rootPage = IntroPage;
         configProvider.setConfigData(false);
       } else {
         this.rootPage = TabsPage;
       }
-      */
+      
       statusBar.styleDefault();
       splashScreen.hide();
     });

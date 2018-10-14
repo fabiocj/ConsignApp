@@ -48,19 +48,25 @@ export class EditPage {
   save() {
     if (this.valorRendas == 0 && this.origem == 'Despesa') {
       this.toastCtrl.create({
-        message: 'Favor cadastre uma Renda antes de ter despesas!'
+        message: 'Por favor, cadastre alguma Renda antes de ter Despesas!'
+        , duration: 2000
+        , position: 'bottom'
+      }).present();
+    } else if (this.model.valor < 0) {
+      this.toastCtrl.create({
+        message: 'Por favor, os valores informados precisam ser maiores que zero!'
         , duration: 2000
         , position: 'bottom'
       }).present();
     } else if (this.model.descricao == null || this.model.descricao == '') {
       this.toastCtrl.create({
-        message: 'Favor informar um Nome para a ' + this.origem + '!'
+        message: 'Por favor, informar um Nome para a ' + this.origem + '!'
         , duration: 2000
         , position: 'bottom'
       }).present();
     } else if (this.model.valor == null || this.model.valor == 0) {
       this.toastCtrl.create({
-        message: 'Favor informar um Valor para a ' + this.origem + '!'
+        message: 'Por favor, informar um Valor para a ' + this.origem + '!'
         , duration: 2000
         , position: 'bottom'
       }).present();
