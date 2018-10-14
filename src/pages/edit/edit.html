@@ -7,12 +7,11 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Nome</ion-label>
-      <ion-input type="text" name="caixa" [(ngModel)]="model.descricao"></ion-input>
+      <ion-input type="text" maxlength="28" name="caixa" [(ngModel)]="model.descricao"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Valor</ion-label>
-      <!--<ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>-->
-      <ion-input type="text" name="valor" maxlength="10" [(ngModel)]="model.valor" [brmasker]="{money: true, thousand: ',',  decimalCaracter: '.', decimal: '2'}"></ion-input>
+      <ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">Salvar</button>

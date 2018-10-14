@@ -18,6 +18,5 @@ export class TabsPage {
   tab5Root = AboutPage;
 
   constructor() {
-
   }
 }

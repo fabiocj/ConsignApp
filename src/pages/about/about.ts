@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BancoProvider } from '../../providers/banco/banco';
-import { AlertController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
+import { IntroPage } from '../intro/intro';
 
 @Component({
   selector: 'page-about',
@@ -11,6 +12,7 @@ export class AboutPage {
   constructor(
     private bancoProvider: BancoProvider
     , private alertCtrl: AlertController
+    , public navCtrl: NavController
   ) {
   }
 
@@ -27,19 +29,21 @@ export class AboutPage {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            //console.log('Cancelar clicked');
           }
         },
         {
           text: 'Apagar',
           handler: () => {
             this.bancoProvider.hardReset();
-            //console.log('Apagar clicked');
           }
         }
       ]
     });
     alert.present();
+  }
+
+  tutorial() {
+    this.navCtrl.push(IntroPage);
   }
 
 }

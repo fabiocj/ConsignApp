@@ -4,30 +4,30 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-list>
-      <ion-item-sliding *ngFor="let item of caixas">
-        <ion-item>
-          <h1>{{ item.caixa.descricao }}</h1>
-          <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="danger" (click)="removeDespesa(item);">
-            <ion-icon name="trash"></ion-icon>Excluir
-          </button>
-          <button ion-button (click)="editDespesa(item);">
-            <ion-icon name="create"></ion-icon>Editar
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-    <ion-fab bottom right>
-      <button ion-fab (click)="addDespesa()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
-    <ion-fab bottom right>
-      <button ion-fab (click)="addDespesa()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
-  </ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of caixas">
+      <ion-item>
+        <h2>{{ item.caixa.descricao }}</h2>
+        <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeDespesa(item);">
+          <ion-icon name="trash"></ion-icon>Excluir
+        </button>
+        <button ion-button (click)="editDespesa(item);">
+          <ion-icon name="create"></ion-icon>Editar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addDespesa()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addDespesa()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

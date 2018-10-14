@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content padding>
   <ion-card>
-    <ion-card-header class="cabecalho">Concurso de Apps CIDATA</ion-card-header>
+    <ion-card-header class="cabecalho">Concurso de Apps CIDADATA</ion-card-header>
     <ion-card-content text-center>
       <br>
       <h2>Uso de Dados para Cidadania Financeira</h2>
@@ -17,7 +17,6 @@
   </ion-card>
   <ion-card>
     <ion-card-header class="cabecalho">Equipe: ConsignApp</ion-card-header>
-    <!--<ion-list-header>Equipe: ConsignApp</ion-list-header>-->
     <ion-item>
       <ion-icon name="md-contact" item-left></ion-icon>Antônio Yuri Menezes
     </ion-item>
@@ -31,7 +30,31 @@
       <ion-icon name="md-contact" item-left></ion-icon>Vithor Tibiriçá
     </ion-item>
   </ion-card>
-  <br>
-  <button ion-button block color="danger" (click)="apagar()">Limpar Dados</button>
-  <p text-center>Clique para apagar todos os Dados do App!</p>
+  <ion-card>
+    <ion-row center>
+      <ion-col>
+        <p text-center>Clique no botão abaixo para iniciar novamente o Tutorial!</p>
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col>
+        <button ion-button icon-left color="secondary" class="button" (click)="tutorial()">
+          <div>Iniciar Tutorial</div>
+        </button>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row center>
+      <ion-col>
+        <p>Clique no botão abaixo para Limpar todos os Dados do App!</p>
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col>
+        <button ion-button icon-left color="danger" (click)="apagar()">
+          <div>Limpar Dados</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

@@ -11,7 +11,6 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/currency-mask.config";
-import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { BancoProvider } from '../providers/banco/banco';
@@ -25,7 +24,6 @@ import { EditPage } from '../pages/edit/edit';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-import { DadosProvider } from '../providers/dados/dados';
 import { ConsultaPage } from '../pages/consulta/consulta';
 //registerLocaleData(ptBr);
 registerLocaleData(ptBr, 'pt-BR');
@@ -56,7 +54,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , HttpClientModule
     , IntroPageModule
     , CurrencyMaskModule
-    , BrMaskerModule
     , IonicModule.forRoot(MyApp)
     , IonicStorageModule.forRoot()
   ],
@@ -84,7 +81,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , CurrencyPipe
     , PercentPipe
     , DecimalPipe
-    , DadosProvider
   ]
 })
 export class AppModule { }

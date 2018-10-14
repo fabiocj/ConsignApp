@@ -22,7 +22,6 @@ export class ConsultaPage {
     , public bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {
-
   }
 
   ionViewDidLoad() {
@@ -59,7 +58,6 @@ export class ConsultaPage {
       dados = this.bancoProvider.loadChequeEspecial();
       texto = 'Taxa Média Mensal de Juros - Pessoa Física - Cheque Especial';
     }
-    //console.log('baseDadosAbertos: ', dados);
     this.loading.dismiss().then(() => {
       dados.subscribe(results => {
         this.items = results;

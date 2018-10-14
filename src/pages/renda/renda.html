@@ -7,7 +7,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of caixas">
       <ion-item>
-        <h1>{{ item.caixa.descricao }}</h1>
+        <h2>{{ item.caixa.descricao }}</h2>
         <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
       </ion-item>
       <ion-item-options side="right">

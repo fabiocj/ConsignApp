@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { EditPage } from '../edit/edit';
 
@@ -12,8 +12,6 @@ export class RendaPage {
 
   constructor(
     public navCtrl: NavController
-    , public navParams: NavParams
-    , public alertCtrl: AlertController
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {
@@ -27,7 +25,6 @@ export class RendaPage {
     this.bancoProvider.getAllRenda()
       .then(results => {
         this.caixas = results;
-        //console.log("valor das Rendas: ", this.caixas);
       });
   }
 

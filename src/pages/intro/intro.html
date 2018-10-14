@@ -1,54 +1,31 @@
 <ion-content>
-  <ion-slides pager  paginationType="bullets" effect="slide" centeredSlides="true">
-
-    <ion-slide class="principal">
+  <ion-slides pager paginationType="bullets" effect="slide" centeredSlides="true">
+    <ion-slide class="inicio">
       <img src="assets/imgs/ConsignApp.png" alt="" />
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/1.png" alt="" />
+      <img src="assets/imgs/1.jpeg" alt="" />
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/2.png" alt="" />
+      <img src="assets/imgs/2.jpeg" alt="" />
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/3.png" alt="" />
+      <img src="assets/imgs/3.jpeg" alt="" />
     </ion-slide>
     <ion-slide>
-      <img src="assets/imgs/4.png" alt="" />
+      <img src="assets/imgs/4.jpeg" alt="" />
     </ion-slide>
-    <ion-slide class="slide_image">
-      <img src="assets/imgs/ica-slidebox-img-1.png" alt="" />
-      <h2>Meu app Fantastico</h2>
+    <ion-slide class="fim">
+      <img src="assets/imgs/ConsignApp.png" alt="" />
+      <h1><b>Consign</b><i>App</i></h1>
       <div>
-        <br>
-        <p>Este meu app tera funções incríveis. Ele foi feito pra impressionar você.</p>
-        <p>Ficou curioso? <strong>Veja mais</strong></p>
-        <a (click)="goToTabsPage()">Deixa de lorota...</a>
+        <p class="teste2">Este Aplicativo foi desenvolvido para o Concurso de Apps CIDADATA - Uso de Dados para
+          Cidadania Financeira</p>
+        <button ion-button icon-start color="dark" (click)="goToTabsPage()">
+          <ion-icon name="logo-usd"></ion-icon>
+          Ir para o App
+        </button>
       </div>
     </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/imgs/ica-slidebox-img-2.png" alt="" />
-      <h2>Este é o segundo Slide</h2>
-      <a (click)="goToTabsPage()">Deixa de lorota...</a>
-    </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/imgs/ica-slidebox-img-3.png" alt="" />
-      <h2>E agora o terceiro</h2>
-      <a (click)="goToTabsPage()">Deixa de lorota...</a>
-    </ion-slide>
-
-    <ion-slide class="slide_image">
-      <img src="assets/imgs/ica-slidebox-img-4.png" alt="" />
-      <h2>Acaboooou</h2>
-      <div>
-        <p>
-          Agora vá lá pra o App!!
-        </p>
-        <a (click)="goToTabsPage()">Até que enfim...</a>
-      </div>
-    </ion-slide>
-
   </ion-slides>
 </ion-content>
