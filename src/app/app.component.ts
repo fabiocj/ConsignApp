@@ -7,7 +7,6 @@ import { BancoProvider } from '../providers/banco/banco';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 import { ConfigProvider } from '../providers/config/config';
-import { DadosProvider } from '../providers/dados/dados';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,20 +23,20 @@ export class MyApp {
     , statusBar: StatusBar
     , splashScreen: SplashScreen
     , configProvider: ConfigProvider
-    , dadosProvider: DadosProvider
   ) {
     platform.ready().then(() => {
       let config = configProvider.getConfigData();
 
+      console.log('Valor config: ', config);
+      this.rootPage = IntroPage;
+      /*
       if (config == null) {
         this.rootPage = IntroPage;
         configProvider.setConfigData(false);
       } else {
         this.rootPage = TabsPage;
       }
-      console.log('Valor do config: ', config);
-
-      let dados = dadosProvider.getDadosData();
+      */
 
       statusBar.styleDefault();
       splashScreen.hide();

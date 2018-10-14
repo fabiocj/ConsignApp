@@ -144,9 +144,10 @@ export class BancoProvider {
 
   public hardReset() {
     this.storage.clear().then(() => {
-      console.log('Todos os dados foram apagados!');
-      console.log('Feliz WIPE novo!');
+      //console.log('Todos os dados foram apagados!');
+      //console.log('Feliz WIPE novo!');
     });
+    localStorage.clear();
   }
 
   /*

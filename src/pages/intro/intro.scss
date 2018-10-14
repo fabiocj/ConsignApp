@@ -1,5 +1,27 @@
 page-intro {
+    .principal {
+        background-color: #33B55B;
+        color: white;
+    }
     .slide_image img {
         width: 240px;
     }
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: grey;
+    }
+    .teste {
+    opacity: 0.2;
+    filter: alpha(opacity=50);
+    }
+    .bar {
+        //height: 4em;
+        //padding-top: 2em;
+        opacity: 0.5;
+        background: black;
+        //border-top: 3px solid #ccc;
+        border-bottom: 3px solid #ccc;
+        margin-top: 5.0em;
+    }
+      
 }
