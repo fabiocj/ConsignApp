@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BancoProvider } from '../../providers/banco/banco';
 import { AlertController, NavController } from 'ionic-angular';
-import { IntroPage } from '../intro/intro';
 
 @Component({
   selector: 'page-about',
