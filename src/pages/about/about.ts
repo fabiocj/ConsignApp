@@ -43,7 +43,7 @@ export class AboutPage {
   }
 
   tutorial() {
-    this.navCtrl.push(IntroPage);
+    localStorage.clear();
   }
 
 }

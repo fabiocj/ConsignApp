@@ -8,24 +8,11 @@ page-intro {
         color: white;
         width: 240px;
     }
-    .slide_image img {
-        width: 240px;
-    }
     .swiper-pagination-bullet-active {
         opacity: 1;
         background: greenyellow;
     }
-    .teste {
-        opacity: 0.2;
-        filter: alpha(opacity=50);
-    }
-    .bar {
-        //height: 4em;
-        //padding-top: 2em;
-        opacity: 0.5;
-        background: black;
-        //border-top: 3px solid #ccc;
-        border-bottom: 3px solid #ccc;
-        margin-top: 5.0em;
-    }      
+    ion-slide {
+        background-color: #33B55B;
+    }  
 }
