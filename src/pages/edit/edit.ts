@@ -99,7 +99,8 @@ export class EditPage {
   }
 
   private saveCaixa() {
-    this.model.ehRenda = this.tipo;
+    this.model.ehConsignado = this.ehConsignado;
+    this.model.ehRenda = this.ehRenda;
     if (this.key) {
       return this.bancoProvider.update(this.key, this.model);
     } else {
