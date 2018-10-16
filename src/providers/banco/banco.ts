@@ -10,6 +10,7 @@ export class BancoProvider {
 
   private totalRenda: number = 0;
   private totalDespesa: number = 0;
+  private totalConsignado: number = 0;
   basepath = "/bancoapi";
 
   constructor(
@@ -43,14 +44,17 @@ export class BancoProvider {
   public getAll() {
     this.totalRenda = 0;
     this.totalDespesa = 0;
+    this.totalConsignado = 0;
     let caixas: CaixaList[] = [];
 
-    return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+    return this.storage.forEach((value: Caixa, key: string) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
       if (caixa.caixa.ehRenda == true) {
         this.totalRenda += (caixa.caixa.valor * 1);
+      } else if (caixa.caixa.ehConsignado == true) {
+        this.totalConsignado += (caixa.caixa.valor * 1);
       } else {
         this.totalDespesa += (caixa.caixa.valor * 1);
       }
@@ -59,6 +63,7 @@ export class BancoProvider {
       .then(() => {
         localStorage.setItem('totalRenda', String(this.totalRenda));
         localStorage.setItem('totalDespesa', String(this.totalDespesa));
+        localStorage.setItem('totalConsignado', String(this.totalConsignado));
         return Promise.resolve(caixas);
       })
       .catch((error) => {
@@ -70,7 +75,7 @@ export class BancoProvider {
     this.totalRenda = 0;
     let caixas: CaixaList[] = [];
 
-    return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+    return this.storage.forEach((value: Caixa, key: string) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
@@ -90,19 +95,25 @@ export class BancoProvider {
 
   public getAllDespesa() {
     this.totalDespesa = 0;
+    this.totalConsignado = 0;
     let caixas: CaixaList[] = [];
 
-    return this.storage.forEach((value: Caixa, key: string, iterationNumvber: number) => {
+    return this.storage.forEach((value: Caixa, key: string) => {
       let caixa = new CaixaList();
       caixa.key = key;
       caixa.caixa = value;
       if (caixa.caixa.ehRenda == false) {
-        this.totalDespesa += (caixa.caixa.valor * 1);
+        if (caixa.caixa.ehConsignado == true) {
+          this.totalConsignado += (caixa.caixa.valor * 1);
+        } else {
+          this.totalDespesa += (caixa.caixa.valor * 1);
+        }
         caixas.push(caixa);
       }
     })
       .then(() => {
         localStorage.setItem('totalDespesa', String(this.totalDespesa));
+        localStorage.setItem('totalConsignado', String(this.totalConsignado));
         return Promise.resolve(caixas);
       })
       .catch((error) => {
@@ -117,7 +128,6 @@ export class BancoProvider {
   public hardReset() {
     this.storage.clear().then(() => {
     });
-    localStorage.clear();
   }
 
   loadSelicDia() {
@@ -170,6 +180,7 @@ export class Caixa {
   descricao: string;
   valor: number;
   ehRenda: boolean;
+  ehConsignado: boolean;
 }
 
 export class CaixaList {

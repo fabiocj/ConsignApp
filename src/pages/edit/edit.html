@@ -7,11 +7,15 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Nome</ion-label>
-      <ion-input type="text" maxlength="28" name="caixa" [(ngModel)]="model.descricao"></ion-input>
+      <ion-input name="caixa" [(ngModel)]="model.descricao" type="text" maxlength="28"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Valor</ion-label>
-      <ion-input type="number" name="valor" [(ngModel)]="model.valor"></ion-input>
+      <ion-input name="valor" [(ngModel)]="model.valor" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Consignado</ion-label>
+      <ion-toggle name="ehConsignado" [(ngModel)]="model.ehConsignado" (ionChange)="change()" disabled={{botaoDesabilitado}}></ion-toggle>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">Salvar</button>

@@ -14,8 +14,10 @@ export class EditPage {
   key: string;
   origem: string;
   transacao: string;
-  tipo: boolean;
+  ehRenda: boolean;
+  ehConsignado: boolean = false;
   valorRendas: number;
+  botaoDesabilitado: boolean;
 
   constructor(
     public navCtrl: NavController
@@ -27,9 +29,11 @@ export class EditPage {
     this.origem = navParams.get('origem');
     this.transacao = navParams.get('transacao');
     if (this.origem == "Renda") {
-      this.tipo = true;
+      this.ehRenda = true;
+      this.botaoDesabilitado = true;
     } else {
-      this.tipo = false;
+      this.ehRenda = false;
+      this.botaoDesabilitado = false;
     }
 
     if (this.navParams.data.caixa && this.navParams.data.key) {
@@ -43,6 +47,10 @@ export class EditPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad EditPage');
     this.valorRendas = Number(localStorage.getItem("totalRenda"));
+  }
+
+  change() {
+    this.ehConsignado = !this.ehConsignado;
   }
 
   save() {

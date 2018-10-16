@@ -14,6 +14,7 @@ export class HomePage {
 
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
+  @ViewChild('totalConsignado') totalConsignado;
   @ViewChild('restanteValor') restanteValor;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
   @ViewChild('percRendaComprometida') percRendaComprometida;
@@ -43,6 +44,7 @@ export class HomePage {
   ionViewDidEnter() {
     let valorRendas: number;
     let valorDespesas: number;
+    let valorConsignado: number;
     let valorRestante: number;
     let valorPercDisponivel: number;
     let valorPercComprometida: number;
@@ -51,17 +53,19 @@ export class HomePage {
 
     valorRendas = Number(localStorage.getItem("totalRenda"));
     valorDespesas = Number(localStorage.getItem("totalDespesa"));
-    valorRestante = valorRendas - valorDespesas;
+    valorConsignado = Number(localStorage.getItem("totalConsignado"));
+    valorRestante = valorRendas - (valorDespesas + valorConsignado);
     if (valorRendas <= 0) {
       valorPercComprometida = null;
       valorPercDisponivel = null;
     } else {
-      valorPercComprometida = ((valorDespesas) / valorRendas);
+      valorPercComprometida = ((valorDespesas + valorConsignado) / valorRendas);
       valorPercDisponivel = (1 - valorPercComprometida);
     }
 
     this.totalRendas = this.getCurrency(valorRendas);
     this.totalDespesas = this.getCurrency(valorDespesas);
+    this.totalConsignado = this.getCurrency(valorConsignado);
     this.restanteValor = this.getCurrency(valorRestante);
     this.percRendaComprometida = this.getPercent(valorPercComprometida);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
