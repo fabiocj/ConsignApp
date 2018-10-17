@@ -38,6 +38,7 @@ export class EditPage {
 
     if (this.navParams.data.caixa && this.navParams.data.key) {
       this.model = this.navParams.data.caixa;
+      this.ehConsignado = this.model.ehConsignado;
       this.key = this.navParams.data.key;
     } else {
       this.model = new Caixa();
@@ -49,7 +50,7 @@ export class EditPage {
     this.valorRendas = Number(localStorage.getItem("totalRenda"));
   }
 
-  change() {
+  mudaConsignado() {
     this.ehConsignado = !this.ehConsignado;
   }
 

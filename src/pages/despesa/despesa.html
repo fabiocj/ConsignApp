@@ -1,14 +1,26 @@
 <ion-header>
   <ion-navbar color="primary" text-center>
-    <ion-title>Despesas</ion-title>
+    <ion-title>Rendas</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let item of caixas">
-      <ion-item>
-        <h2>{{ item.caixa.descricao }}</h2>
-        <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
+      <!--<ion-item [ngStyle]="{'background-color': item.caixa.ehConsignado ? '#A9F5BC' : ''}">-->
+      <ion-item [ngStyle]="{'color': item.caixa.ehConsignado ? '#33B55B' : ''}">
+        <ion-grid>
+          <ion-row>
+            <h2>{{ item.caixa.descricao }}</h2>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->
+            </ion-col>
+            <ion-col>
+              <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDespesa(item);">
@@ -20,11 +32,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <ion-fab bottom right>
-    <button ion-fab (click)="addDespesa()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
   <ion-fab bottom right>
     <button ion-fab (click)="addDespesa()">
       <ion-icon name="add"></ion-icon>

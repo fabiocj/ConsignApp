@@ -24,14 +24,25 @@ export class MyApp {
     , splashScreen: SplashScreen
     , configProvider: ConfigProvider
   ) {
+    let mostraTutorial: boolean;
+
     platform.ready().then(() => {
-      let config = configProvider.getConfigData();
+      //let config = configProvider.getConfigData();
+
+      console.log('localStorage.getItem("mostraTutorial"): ', localStorage.getItem("mostraTutorial"))
+      mostraTutorial = Boolean(localStorage.getItem("mostraTutorial"));
+      console.log('valor depois do getItem: ', mostraTutorial);
 
       //console.log('Valor config: ', config);
       this.rootPage = IntroPage;
-      if (config == null) {
+
+
+      
+      if (mostraTutorial == null) {
+        console.log('entrou no null');
         this.rootPage = IntroPage;
-        configProvider.setConfigData(false);
+        localStorage.setItem('mostraTutorial', String(true));
+        //configProvider.setConfigData(false);
       } else {
         this.rootPage = TabsPage;
       }

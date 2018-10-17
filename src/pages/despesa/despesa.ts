@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { EditPage } from '../edit/edit';
 
@@ -9,11 +9,11 @@ import { EditPage } from '../edit/edit';
 })
 export class DespesaPage {
   caixas: CaixaList[];
+  public hide: boolean = false;
 
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
-    , public alertCtrl: AlertController
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {
@@ -51,6 +51,10 @@ export class DespesaPage {
         }).present();
       });
     this.bancoProvider.calculaTotal();
+  }
+
+  ngIfCtrl() {
+    this.hide = !this.hide;
   }
 
 }

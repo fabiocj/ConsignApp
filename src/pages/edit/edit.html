@@ -15,7 +15,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Consignado</ion-label>
-      <ion-toggle name="ehConsignado" [(ngModel)]="model.ehConsignado" (ionChange)="change()" disabled={{botaoDesabilitado}}></ion-toggle>
+      <ion-toggle name="ehConsignado" [(ngModel)]="model.ehConsignado" (ionChange)="mudaConsignado()" disabled={{botaoDesabilitado}}></ion-toggle>
     </ion-item>
   </ion-list>
   <button ion-button block (click)="save()">Salvar</button>
