@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BancoProvider } from '../../providers/banco/banco';
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -11,7 +11,6 @@ export class AboutPage {
   constructor(
     private bancoProvider: BancoProvider
     , private alertCtrl: AlertController
-    , public navCtrl: NavController
   ) {
   }
 

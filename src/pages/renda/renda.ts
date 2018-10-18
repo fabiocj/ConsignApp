@@ -48,7 +48,7 @@ export class RendaPage {
           , position: 'bottom'
         }).present();
       });
-    this.bancoProvider.calculaTotal();
+    this.bancoProvider.getAll();
   }
 
 }

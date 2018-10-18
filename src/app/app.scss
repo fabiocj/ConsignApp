@@ -34,3 +34,7 @@ body, span, button, h1, h2, h3, p, ion-item, ion-button {
 .card {
   border-radius: 10px;
 }
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: greenyellow;
+}

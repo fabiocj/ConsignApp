@@ -121,13 +121,10 @@ export class BancoProvider {
       });
   }
 
-  public calculaTotal() {
-    this.getAll();
-  }
-
   public hardReset() {
     this.storage.clear().then(() => {
     });
+    this.getAll();
   }
 
   loadSelicDia() {

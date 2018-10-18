@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
-import { NavController, ToastOptions, ToastController } from 'ionic-angular';
+import { ToastOptions } from 'ionic-angular';
 import { BancoProvider } from '../../providers/banco/banco';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 
@@ -21,10 +20,7 @@ export class HomePage {
   valorDisponivel: number;
 
   constructor(
-    public navCtrl: NavController
-    , public http: HttpClient
-    , private bancoProvider: BancoProvider
-    , public toastCtrl: ToastController
+    private bancoProvider: BancoProvider
     , private currencyPipe: CurrencyPipe
     , private percentPipe: PercentPipe
   ) {
@@ -50,7 +46,7 @@ export class HomePage {
     let valorPercDisponivel: number;
     let valorPercComprometida: number;
 
-    this.bancoProvider.calculaTotal();
+    this.bancoProvider.getAll();
 
     valorRendas = Number(localStorage.getItem("totalRenda"));
     valorDespesas = Number(localStorage.getItem("totalDespesa"));
@@ -76,15 +72,6 @@ export class HomePage {
 
   itemClick(itemid: number) {
     alert(itemid);
-  }
-
-  showToast(mensagem: string) {
-    this.toastOptions = {
-      message: mensagem
-      , duration: 3000
-      , position: 'bottom'
-    }
-    this.toastCtrl.create(this.toastOptions).present();
   }
 
 }

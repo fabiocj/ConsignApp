@@ -57,13 +57,7 @@ export class EditPage {
 
   save() {
     let valorRendas = (Number(localStorage.getItem("totalRenda")));
-    if (valorRendas == 0 && this.origem == 'Despesa') {
-      this.toastCtrl.create({
-        message: 'Por favor, cadastre alguma Renda antes de ter Despesas!'
-        , duration: 2000
-        , position: 'bottom'
-      }).present();
-    } else if (this.model.valor < 0) {
+    if (this.model.valor < 0) {
       this.toastCtrl.create({
         message: 'Por favor, os valores informados precisam ser maiores que zero!'
         , duration: 2000
@@ -84,8 +78,12 @@ export class EditPage {
     } else {
       this.saveCaixa()
         .then(() => {
+          let mensagemExtra = '';
+          if ((valorRendas <= 0) && (this.origem == "Despesa")) {
+            mensagemExtra = 'Considere adicionar alguma Renda para equilibrar as Contas!';
+          }
           this.toastCtrl.create({
-            message: this.origem + ' salva!'
+            message: this.origem + ' salva! ' + mensagemExtra
             , duration: 2000
             , position: 'bottom'
           }).present();

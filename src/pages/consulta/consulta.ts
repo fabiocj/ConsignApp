@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, LoadingController, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { BancoProvider } from '../../providers/banco/banco';
 
@@ -16,9 +16,7 @@ export class ConsultaPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController
-    , public navParams: NavParams
-    , private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController
     , public bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {

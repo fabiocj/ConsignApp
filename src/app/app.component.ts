@@ -26,7 +26,6 @@ export class MyApp {
     platform.ready().then(() => {
 
       if (localStorage.getItem("mostraTutorial") == null) {
-        console.log('Eh null mesmo essa joça');
         localStorage.setItem('mostraTutorial', 'nao');
         this.rootPage = IntroPage;
       } else {

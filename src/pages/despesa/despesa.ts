@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { BancoProvider, CaixaList } from '../../providers/banco/banco';
 import { EditPage } from '../edit/edit';
 
@@ -13,7 +13,6 @@ export class DespesaPage {
 
   constructor(
     public navCtrl: NavController
-    , public navParams: NavParams
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {
@@ -50,7 +49,7 @@ export class DespesaPage {
           , position: 'bottom'
         }).present();
       });
-    this.bancoProvider.calculaTotal();
+    this.bancoProvider.getAll();
   }
 
   ngIfCtrl() {
