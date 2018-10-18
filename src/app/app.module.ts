@@ -14,7 +14,6 @@ import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "ng2-currency-mask/src/
 
 import { MyApp } from './app.component';
 import { BancoProvider } from '../providers/banco/banco';
-import { ConfigProvider } from '../providers/config/config';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe, CurrencyPipe, PercentPipe, DecimalPipe } from '@angular/common';
@@ -76,7 +75,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , { provide: LOCALE_ID, useValue: 'pt-BR' }
     , { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
     , BancoProvider
-    , ConfigProvider
     , DatePipe
     , CurrencyPipe
     , PercentPipe

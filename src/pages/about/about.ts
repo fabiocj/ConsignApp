@@ -42,7 +42,7 @@ export class AboutPage {
   }
 
   tutorial() {
-    localStorage.clear();
+    localStorage.setItem('mostraTutorial', 'sim');
   }
 
 }
