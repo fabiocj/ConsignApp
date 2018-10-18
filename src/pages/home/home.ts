@@ -13,7 +13,7 @@ export class HomePage {
   @ViewChild('totalConsignado') totalConsignado;
   @ViewChild('restanteValor') restanteValor;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
-  @ViewChild('percRendaComprometida') percRendaComprometida;
+  @ViewChild('percRendaComprometido') percRendaComprometido;
   variavelCor: string;
 
   constructor(
@@ -61,7 +61,7 @@ export class HomePage {
     this.totalDespesas = this.getCurrency(valorDespesas);
     this.totalConsignado = this.getCurrency(valorConsignado);
     this.restanteValor = this.getCurrency(valorRestante);
-    this.percRendaComprometida = this.getPercent(valorPercComprometido);
+    this.percRendaComprometido = this.getPercent(valorPercComprometido);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
     
     if (valorPercDisponivel >= 0.4) {
