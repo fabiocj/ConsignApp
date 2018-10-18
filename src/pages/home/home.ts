@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { ToastOptions } from 'ionic-angular';
 import { BancoProvider } from '../../providers/banco/banco';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 
@@ -8,8 +7,6 @@ import { CurrencyPipe, PercentPipe } from '@angular/common';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  public toastOptions: ToastOptions;
-  public toastMessage: string;
 
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
@@ -17,7 +14,7 @@ export class HomePage {
   @ViewChild('restanteValor') restanteValor;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
   @ViewChild('percRendaComprometida') percRendaComprometida;
-  valorDisponivel: number;
+  variavelCor: string;
 
   constructor(
     private bancoProvider: BancoProvider
@@ -44,7 +41,7 @@ export class HomePage {
     let valorConsignado: number;
     let valorRestante: number;
     let valorPercDisponivel: number;
-    let valorPercComprometida: number;
+    let valorPercComprometido: number;
 
     this.bancoProvider.getAll();
 
@@ -53,21 +50,28 @@ export class HomePage {
     valorConsignado = Number(localStorage.getItem("totalConsignado"));
     valorRestante = valorRendas - (valorDespesas + valorConsignado);
     if (valorRendas <= 0) {
-      valorPercComprometida = null;
+      valorPercComprometido = null;
       valorPercDisponivel = null;
     } else {
-      valorPercComprometida = ((valorDespesas + valorConsignado) / valorRendas);
-      valorPercDisponivel = (1 - valorPercComprometida);
+      valorPercComprometido = ((valorDespesas + valorConsignado) / valorRendas);
+      valorPercDisponivel = (1 - valorPercComprometido);
     }
 
     this.totalRendas = this.getCurrency(valorRendas);
     this.totalDespesas = this.getCurrency(valorDespesas);
     this.totalConsignado = this.getCurrency(valorConsignado);
     this.restanteValor = this.getCurrency(valorRestante);
-    this.percRendaComprometida = this.getPercent(valorPercComprometida);
+    this.percRendaComprometida = this.getPercent(valorPercComprometido);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
+    
+    if (valorPercDisponivel >= 0.4) {
+      this.variavelCor = '#33B55B';
+    } else if ((valorPercDisponivel < 0.4) && (valorPercDisponivel >= 0.15)){
+      this.variavelCor = 'orange';
+    } else {
+      this.variavelCor = 'red';
+    }
 
-    this.valorDisponivel = valorPercDisponivel;
   }
 
   itemClick(itemid: number) {

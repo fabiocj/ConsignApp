@@ -10,7 +10,7 @@
       <ion-item [ngStyle]="{'color': item.caixa.ehConsignado ? '#33B55B' : ''}">
         <h2>{{ item.caixa.descricao }}</h2>
         <p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
-        <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->  
+        <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDespesa(item);">

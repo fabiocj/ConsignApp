@@ -42,15 +42,15 @@
     <ion-list>
       <ion-item>
         <ion-label>Comprometido</ion-label>
-        <ion-input readonly [(ngModel)]="percRendaComprometida" text-right></ion-input>
+        <ion-input readonly [(ngModel)]="percRendaComprometido" text-right></ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label>Disponível</ion-label>
-        <!--<ion-input readonly [(ngModel)]="percRendaDisponivel" text-right></ion-input>-->
-        <ion-input [ngStyle]="{'color': ((valorDisponivel <= 0.40) && (valorDisponivel >= 0.15)) ? 'orange' : (valorDisponivel <= 0.15 ? 'red' : 'green')}" readonly [(ngModel)]="percRendaDisponivel" text-right></ion-input>
+        <ion-input [ngStyle]="{'color': variavelCor }" readonly [(ngModel)]="percRendaDisponivel" text-right></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
+  <p text-center><ion-icon center name="md-pulse" [ngStyle]="{'color': variavelCor }" ></ion-icon></p>
 </ion-content>
