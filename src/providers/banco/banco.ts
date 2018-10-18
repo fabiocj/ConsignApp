@@ -11,6 +11,9 @@ export class BancoProvider {
   private totalRenda: number = 0;
   private totalDespesa: number = 0;
   private totalConsignado: number = 0;
+  private valorRestante: number = 0;
+  private valorPercDisponivel: number = 0;
+  private valorPercComprometido: number = 0;
   basepath = "/bancoapi";
 
   constructor(
@@ -45,6 +48,9 @@ export class BancoProvider {
     this.totalRenda = 0;
     this.totalDespesa = 0;
     this.totalConsignado = 0;
+    this.valorRestante = 0;
+    this.valorPercComprometido = 0;
+    this.valorPercDisponivel = 0;
     let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string) => {
@@ -61,9 +67,24 @@ export class BancoProvider {
       caixas.push(caixa);
     })
       .then(() => {
+
+        this.valorRestante = this.totalRenda - (this.totalDespesa + this.totalConsignado);
+        if (this.totalRenda <= 0) {
+          this.valorPercComprometido = null;
+          this.valorPercDisponivel = null;
+        } else {
+          this.valorPercComprometido = ((this.totalDespesa + this.totalConsignado) / this.totalRenda);
+          this.valorPercDisponivel = (1 - this.valorPercComprometido);
+        }
+
         localStorage.setItem('totalRenda', String(this.totalRenda));
         localStorage.setItem('totalDespesa', String(this.totalDespesa));
         localStorage.setItem('totalConsignado', String(this.totalConsignado));
+
+        localStorage.setItem('valorRestante', String(this.valorRestante));
+        localStorage.setItem('valorPercComprometido', String(this.valorPercComprometido));
+        localStorage.setItem('valorPercDisponivel', String(this.valorPercDisponivel));
+
         return Promise.resolve(caixas);
       })
       .catch((error) => {

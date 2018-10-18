@@ -57,25 +57,38 @@ export class EditPage {
 
   save() {
     let valorRendas = (Number(localStorage.getItem("totalRenda")));
+    let maxConsignado: number = valorRendas * 0.35;
+
     if (this.model.valor < 0) {
+      //VALORES PRECISAM SER MAIORES QUE 0
       this.toastCtrl.create({
         message: 'Por favor, os valores informados precisam ser maiores que zero!'
         , duration: 2000
         , position: 'bottom'
       }).present();
     } else if (this.model.descricao == null || this.model.descricao == '') {
+      //OS CAMPOS PRECISAM SER PREENCHIDOS
       this.toastCtrl.create({
         message: 'Por favor, informar um Nome para a ' + this.origem + '!'
         , duration: 2000
         , position: 'bottom'
       }).present();
     } else if (this.model.valor == null || this.model.valor == 0) {
+      //O CAMPO VALOR PRECISA SER VÁLIDO
       this.toastCtrl.create({
         message: 'Por favor, informar um Valor para a ' + this.origem + '!'
         , duration: 2000
         , position: 'bottom'
       }).present();
+    } else if ((this.origem == "Despesa") && (this.model.valor >= maxConsignado)) {
+      //CONSIGNADO NÃO PODE PASSAR DE 35%
+      this.toastCtrl.create({
+        message: 'Um Consignado não pode ultrapassar a 35% de sua Renda Total!'
+        , duration: 2000
+        , position: 'bottom'
+      }).present();
     } else {
+      //ESTÁ OK
       this.saveCaixa()
         .then(() => {
           let mensagemExtra = '';
@@ -96,6 +109,7 @@ export class EditPage {
             , position: 'bottom'
           }).present();
         })
+      this.bancoProvider.getAll();
     }
   }
 

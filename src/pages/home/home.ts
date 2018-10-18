@@ -10,8 +10,8 @@ export class HomePage {
 
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
-  @ViewChild('totalConsignado') totalConsignado;
-  @ViewChild('restanteValor') restanteValor;
+  @ViewChild('totalConsignados') totalConsignados;
+  @ViewChild('valorRestante') valorRestante;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
   @ViewChild('percRendaComprometido') percRendaComprometido;
   variavelCor: string;
@@ -36,31 +36,26 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    let valorRendas: number;
-    let valorDespesas: number;
-    let valorConsignado: number;
+    let totalRenda: number;
+    let totalDespesa: number;
+    let totalConsignado: number;
     let valorRestante: number;
     let valorPercDisponivel: number;
     let valorPercComprometido: number;
 
     this.bancoProvider.getAll();
 
-    valorRendas = Number(localStorage.getItem("totalRenda"));
-    valorDespesas = Number(localStorage.getItem("totalDespesa"));
-    valorConsignado = Number(localStorage.getItem("totalConsignado"));
-    valorRestante = valorRendas - (valorDespesas + valorConsignado);
-    if (valorRendas <= 0) {
-      valorPercComprometido = null;
-      valorPercDisponivel = null;
-    } else {
-      valorPercComprometido = ((valorDespesas + valorConsignado) / valorRendas);
-      valorPercDisponivel = (1 - valorPercComprometido);
-    }
+    totalRenda = Number(localStorage.getItem("totalRenda"));
+    totalDespesa = Number(localStorage.getItem("totalDespesa"));
+    totalConsignado = Number(localStorage.getItem("totalConsignado"));
+    valorRestante = Number(localStorage.getItem("valorRestante"));
+    valorPercDisponivel = Number(localStorage.getItem("valorPercDisponivel"));
+    valorPercComprometido = Number(localStorage.getItem("valorPercComprometido"));
 
-    this.totalRendas = this.getCurrency(valorRendas);
-    this.totalDespesas = this.getCurrency(valorDespesas);
-    this.totalConsignado = this.getCurrency(valorConsignado);
-    this.restanteValor = this.getCurrency(valorRestante);
+    this.totalRendas = this.getCurrency(totalRenda);
+    this.totalDespesas = this.getCurrency(totalDespesa);
+    this.totalConsignados = this.getCurrency(totalConsignado);
+    this.valorRestante = this.getCurrency(valorRestante);
     this.percRendaComprometido = this.getPercent(valorPercComprometido);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
     
