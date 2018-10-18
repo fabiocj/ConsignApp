@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -30,5 +29,8 @@ body, span, button, h1, h2, h3, p, ion-item, ion-button {
 }
 */
 .normalToast {
-    text-align: justify;
+  text-align: justify;
+}
+.card {
+  border-radius: 10px;
 }

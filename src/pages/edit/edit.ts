@@ -17,7 +17,6 @@ export class EditPage {
   transacao: string;
   ehRenda: boolean;
   ehConsignado: boolean = false;
-  valorRendas: number;
   botaoDesabilitado: boolean;
 
   constructor(
@@ -50,7 +49,6 @@ export class EditPage {
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad EditPage');
-    this.valorRendas = Number(localStorage.getItem("totalRenda"));
   }
 
   mudaConsignado() {
@@ -58,7 +56,8 @@ export class EditPage {
   }
 
   save() {
-    if (this.valorRendas == 0 && this.origem == 'Despesa') {
+    let valorRendas = (Number(localStorage.getItem("totalRenda")));
+    if (valorRendas == 0 && this.origem == 'Despesa') {
       this.toastCtrl.create({
         message: 'Por favor, cadastre alguma Renda antes de ter Despesas!'
         , duration: 2000
