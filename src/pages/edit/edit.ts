@@ -10,6 +10,7 @@ import { BancoProvider, Caixa } from '../../providers/banco/banco';
   ]
 })
 export class EditPage {
+  public mostrarConsignado: boolean = false;
   model: Caixa;
   key: string;
   origem: string;
@@ -31,9 +32,11 @@ export class EditPage {
     if (this.origem == "Renda") {
       this.ehRenda = true;
       this.botaoDesabilitado = true;
+      this.mostrarConsignado = false;
     } else {
       this.ehRenda = false;
       this.botaoDesabilitado = false;
+      this.mostrarConsignado = true;
     }
 
     if (this.navParams.data.caixa && this.navParams.data.key) {

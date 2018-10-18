@@ -13,7 +13,7 @@
       <ion-label stacked>Valor</ion-label>
       <ion-input name="valor" [(ngModel)]="model.valor" type="number"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="mostrarConsignado">
       <ion-label>Consignado</ion-label>
       <ion-toggle name="ehConsignado" [(ngModel)]="model.ehConsignado" (ionChange)="mudaConsignado()" disabled={{botaoDesabilitado}}></ion-toggle>
     </ion-item>

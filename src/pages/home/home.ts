@@ -18,6 +18,7 @@ export class HomePage {
   @ViewChild('restanteValor') restanteValor;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
   @ViewChild('percRendaComprometida') percRendaComprometida;
+  valorDisponivel: number;
 
   constructor(
     public navCtrl: NavController
@@ -69,6 +70,8 @@ export class HomePage {
     this.restanteValor = this.getCurrency(valorRestante);
     this.percRendaComprometida = this.getPercent(valorPercComprometida);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
+
+    this.valorDisponivel = valorPercDisponivel;
   }
 
   itemClick(itemid: number) {

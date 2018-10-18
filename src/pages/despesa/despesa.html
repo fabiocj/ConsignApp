@@ -8,19 +8,9 @@
     <ion-item-sliding *ngFor="let item of caixas">
       <!--<ion-item [ngStyle]="{'background-color': item.caixa.ehConsignado ? '#A9F5BC' : ''}">-->
       <ion-item [ngStyle]="{'color': item.caixa.ehConsignado ? '#33B55B' : ''}">
-        <ion-grid>
-          <ion-row>
-            <h2>{{ item.caixa.descricao }}</h2>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->
-            </ion-col>
-            <ion-col>
-              <p text-right>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <h2>{{ item.caixa.descricao }}</h2>
+        <p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
+        <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->  
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDespesa(item);">
