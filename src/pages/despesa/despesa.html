@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary" text-center>
-    <ion-title>Rendas</ion-title>
+    <ion-title>Despesas</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -9,8 +9,12 @@
       <!--<ion-item [ngStyle]="{'background-color': item.caixa.ehConsignado ? '#A9F5BC' : ''}">-->
       <ion-item [ngStyle]="{'color': item.caixa.ehConsignado ? '#33B55B' : ''}">
         <h2>{{ item.caixa.descricao }}</h2>
-        <p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
-        <!--<ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>-->
+        <ion-row>
+          <ion-col text-left>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</ion-col>
+          <ion-col text-right>
+            <ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>
+          </ion-col>
+        </ion-row>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDespesa(item);">
