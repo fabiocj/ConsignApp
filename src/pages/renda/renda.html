@@ -8,7 +8,11 @@
     <ion-item-sliding *ngFor="let item of caixas">
       <ion-item>
         <h2>{{ item.caixa.descricao }}</h2>
-        <p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p>
+        <ion-row>
+          <ion-col text-left><p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p></ion-col>
+          <ion-col text-right>
+          </ion-col>
+        </ion-row>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeRenda(item);">

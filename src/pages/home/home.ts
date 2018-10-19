@@ -63,8 +63,10 @@ export class HomePage {
       this.variavelCor = '#33B55B';
     } else if ((valorPercDisponivel < 0.4) && (valorPercDisponivel >= 0.15)){
       this.variavelCor = 'orange';
-    } else {
+    } else if (valorPercDisponivel < 0.15) {
       this.variavelCor = 'red';
+    } else {
+      this.variavelCor = '#33B55B';
     }
 
   }

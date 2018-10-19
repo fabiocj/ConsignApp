@@ -10,7 +10,7 @@
       <ion-item [ngStyle]="{'color': item.caixa.ehConsignado ? '#33B55B' : ''}">
         <h2>{{ item.caixa.descricao }}</h2>
         <ion-row>
-          <ion-col text-left>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</ion-col>
+          <ion-col text-left><p>{{ item.caixa.valor | currency:'BRL':'symbol':'1.2' }}</p></ion-col>
           <ion-col text-right>
             <ion-badge *ngIf="item.caixa.ehConsignado">Consignado</ion-badge>
           </ion-col>
