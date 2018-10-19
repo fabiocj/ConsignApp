@@ -80,7 +80,7 @@ export class EditPage {
         , duration: 2000
         , position: 'bottom'
       }).present();
-    } else if ((this.origem == "Despesa") && (this.model.valor >= maxConsignado)) {
+    } else if ((this.origem == "Despesa") && (this.model.ehConsignado == true) && (this.model.valor >= maxConsignado)) {
       //CONSIGNADO NÃO PODE PASSAR DE 35%
       this.toastCtrl.create({
         message: 'Um Consignado não pode ultrapassar a 35% de sua Renda Total!'

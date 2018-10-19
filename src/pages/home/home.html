@@ -14,23 +14,27 @@
       <ion-item>
         <ion-label>Renda</ion-label>
         <ion-input readonly [(ngModel)]="totalRendas" text-right></ion-input>
+        <ion-icon item-end small name="add"></ion-icon>
       </ion-item>
       <ion-list>
         <ion-item>
           <ion-label>Despesa</ion-label>
           <ion-input readonly [(ngModel)]="totalDespesas" text-right></ion-input>
+          <ion-icon class="icone-vermelho" item-end small name="remove"></ion-icon>
         </ion-item>
       </ion-list>
       <ion-list>
         <ion-item>
           <ion-label>Consignado</ion-label>
           <ion-input readonly [(ngModel)]="totalConsignados" text-right></ion-input>
+          <ion-icon class="icone-vermelho" item-end small name="remove"></ion-icon>
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item>
-          <ion-label>Restante</ion-label>
+        <ion-item class="negrito">
+          <ion-label>Saldo</ion-label>
           <ion-input readonly [(ngModel)]="valorRestante" text-right></ion-input>
+          <ion-icon item-end small name="calculator"></ion-icon>
         </ion-item>
       </ion-list>
     </ion-list>

@@ -70,9 +70,4 @@ export class HomePage {
     }
 
   }
-
-  itemClick(itemid: number) {
-    alert(itemid);
-  }
-
 }

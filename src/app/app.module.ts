@@ -53,7 +53,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     , HttpClientModule
     , IntroPageModule
     , CurrencyMaskModule
-    , IonicModule.forRoot(MyApp)
+    , IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+      , backButtonIcon: 'arrow-dropleft-circle'
+    })
     , IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
