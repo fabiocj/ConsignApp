@@ -25,6 +25,25 @@ export class MyApp {
 
     platform.ready().then(() => {
 
+      if (localStorage.getItem("totalRenda") == null) {
+        localStorage.setItem('totalRenda', String(0));
+      }
+      if (localStorage.getItem("totalDespesa") == null) {
+        localStorage.setItem('totalDespesa', String(0));
+      }
+      if (localStorage.getItem("totalConsignado") == null) {
+        localStorage.setItem('totalConsignado', String(0));
+      }
+      if (localStorage.getItem("valorSaldo") == null) {
+        localStorage.setItem('valorSaldo', String(0));
+      }
+      if (localStorage.getItem("valorPercDisponivel") == null) {
+        localStorage.setItem('valorPercDisponivel', String(0));
+      }
+      if (localStorage.getItem("valorPercComprometido") == null) {
+        localStorage.setItem('valorPercComprometido', String(0));
+      }
+
       if (localStorage.getItem("mostraTutorial") == null) {
         localStorage.setItem('mostraTutorial', 'nao');
         this.rootPage = IntroPage;

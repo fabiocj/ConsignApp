@@ -33,6 +33,13 @@ export class AboutPage {
           text: 'Apagar',
           handler: () => {
             this.bancoProvider.hardReset();
+            localStorage.setItem('mostraTutorial', 'sim');
+            localStorage.setItem('totalRenda', String(0));
+            localStorage.setItem('totalDespesa', String(0));
+            localStorage.setItem('totalConsignado', String(0));
+            localStorage.setItem('valorSaldo', String(0));
+            localStorage.setItem('valorPercDisponivel', String(0));
+            localStorage.setItem('valorPercComprometido', String(0));
           }
         }
       ]

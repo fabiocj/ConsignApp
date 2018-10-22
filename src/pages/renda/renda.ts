@@ -9,7 +9,7 @@ import { EditPage } from '../edit/edit';
 })
 export class RendaPage {
   caixas: CaixaList[];
-
+  
   constructor(
     public navCtrl: NavController
     , private bancoProvider: BancoProvider
@@ -22,6 +22,7 @@ export class RendaPage {
   }
 
   ionViewDidEnter() {
+    this.bancoProvider.calcular();
     this.bancoProvider.getAllRenda()
       .then(results => {
         this.caixas = results;
@@ -33,13 +34,17 @@ export class RendaPage {
   }
 
   editRenda(item: CaixaList) {
-    this.navCtrl.push(EditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Renda" });
+    this.navCtrl.push(EditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", valor: item.caixa.valor, origem: "Renda" });
   }
 
   removeRenda(item: CaixaList) {
+    let valorRendas = (Number(localStorage.getItem("totalRenda")));
     this.bancoProvider.remove(item.key)
       .then(() => {
         let index = this.caixas.indexOf(item);
+        valorRendas -= (item.caixa.valor * 1);
+        localStorage.setItem('totalRenda', String(valorRendas));
+        this.bancoProvider.calcular();
         this.caixas.splice(index, 1);
 
         this.toastCtrl.create({
@@ -48,7 +53,7 @@ export class RendaPage {
           , position: 'bottom'
         }).present();
       });
-    this.bancoProvider.getAll();
+    this.bancoProvider.calcular();
   }
 
 }

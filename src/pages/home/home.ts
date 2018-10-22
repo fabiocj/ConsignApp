@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { BancoProvider } from '../../providers/banco/banco';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
+import { BancoProvider } from '../../providers/banco/banco';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +11,7 @@ export class HomePage {
   @ViewChild('totalRendas') totalRendas;
   @ViewChild('totalDespesas') totalDespesas;
   @ViewChild('totalConsignados') totalConsignados;
-  @ViewChild('valorRestante') valorRestante;
+  @ViewChild('valorSaldo') valorSaldo;
   @ViewChild('percRendaDisponivel') percRendaDisponivel;
   @ViewChild('percRendaComprometido') percRendaComprometido;
   variavelCor: string;
@@ -39,35 +39,35 @@ export class HomePage {
     let totalRenda: number;
     let totalDespesa: number;
     let totalConsignado: number;
-    let valorRestante: number;
+    let valorSaldo: number;
     let valorPercDisponivel: number;
     let valorPercComprometido: number;
 
-    this.bancoProvider.getAll();
+    this.bancoProvider.calcular();
 
     totalRenda = Number(localStorage.getItem("totalRenda"));
     totalDespesa = Number(localStorage.getItem("totalDespesa"));
     totalConsignado = Number(localStorage.getItem("totalConsignado"));
-    valorRestante = Number(localStorage.getItem("valorRestante"));
+    valorSaldo = Number(localStorage.getItem("valorSaldo"));
     valorPercDisponivel = Number(localStorage.getItem("valorPercDisponivel"));
     valorPercComprometido = Number(localStorage.getItem("valorPercComprometido"));
 
     this.totalRendas = this.getCurrency(totalRenda);
     this.totalDespesas = this.getCurrency(totalDespesa);
     this.totalConsignados = this.getCurrency(totalConsignado);
-    this.valorRestante = this.getCurrency(valorRestante);
+    this.valorSaldo = this.getCurrency(valorSaldo);
     this.percRendaComprometido = this.getPercent(valorPercComprometido);
     this.percRendaDisponivel = this.getPercent(valorPercDisponivel);
-    
+
     if (valorPercDisponivel >= 0.4) {
       this.variavelCor = '#33B55B';
-    } else if ((valorPercDisponivel < 0.4) && (valorPercDisponivel >= 0.15)){
+    } else if ((valorPercDisponivel < 0.4) && (valorPercDisponivel >= 0.15)) {
       this.variavelCor = 'orange';
     } else if (valorPercDisponivel < 0.15) {
       this.variavelCor = 'red';
     } else {
       this.variavelCor = '#33B55B';
     }
-
   }
+
 }

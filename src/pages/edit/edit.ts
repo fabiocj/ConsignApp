@@ -13,6 +13,7 @@ export class EditPage {
   public mostrarConsignado: boolean = false;
   model: Caixa;
   key: string;
+  valorEditar: number;
   origem: string;
   transacao: string;
   ehRenda: boolean;
@@ -25,9 +26,14 @@ export class EditPage {
     , private bancoProvider: BancoProvider
     , private toastCtrl: ToastController
   ) {
-
     this.origem = navParams.get('origem');
     this.transacao = navParams.get('transacao');
+    if (navParams.get('valor') == null) {
+      this.valorEditar = 0;
+    } else {
+      this.valorEditar = navParams.get('valor');
+    }
+
     if (this.origem == "Renda") {
       this.ehRenda = true;
       this.botaoDesabilitado = true;
@@ -56,7 +62,9 @@ export class EditPage {
   }
 
   save() {
-    let valorRendas = (Number(localStorage.getItem("totalRenda")));
+    let valorRendas: number = (Number(localStorage.getItem("totalRenda")));
+    let valorDespesas: number = (Number(localStorage.getItem("totalDespesa")));
+    let valorConsignados: number = (Number(localStorage.getItem("totalConsignado")));
     let maxConsignado: number = valorRendas * 0.35;
 
     if (this.model.valor < 0) {
@@ -100,6 +108,20 @@ export class EditPage {
             , duration: 2000
             , position: 'bottom'
           }).present();
+          if (this.transacao == "Editar") {
+
+          }
+          if (this.origem == "Renda") {
+            valorRendas += (this.model.valor * 1) - this.valorEditar;
+            localStorage.setItem('totalRenda', String(valorRendas));
+          } else if ((this.origem == "Despesa") && (this.model.ehConsignado == false))  {
+            valorDespesas += (this.model.valor * 1) - this.valorEditar;
+            localStorage.setItem('totalDespesa', String(valorDespesas));
+          } else {
+            valorConsignados += (this.model.valor * 1) - this.valorEditar;
+            localStorage.setItem('totalConsignado', String(valorConsignados));
+          }
+
           this.navCtrl.pop();
         })
         .catch(() => {
@@ -109,7 +131,7 @@ export class EditPage {
             , position: 'bottom'
           }).present();
         })
-      this.bancoProvider.getAll();
+      //this.bancoProvider.getAll();
     }
   }
 

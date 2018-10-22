@@ -23,10 +23,11 @@ export class DespesaPage {
   }
 
   ionViewDidEnter() {
+    this.bancoProvider.calcular();
     this.bancoProvider.getAllDespesa()
       .then(results => {
         this.caixas = results;
-      })
+      });
   }
 
   addDespesa() {
@@ -34,13 +35,17 @@ export class DespesaPage {
   }
 
   editDespesa(item: CaixaList) {
-    this.navCtrl.push(EditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", origem: "Despesa" });
+    this.navCtrl.push(EditPage, { key: item.key, caixa: item.caixa, transacao: "Editar", valor: item.caixa.valor, origem: "Despesa" });
   }
 
   removeDespesa(item: CaixaList) {
+    let valorDespesas = (Number(localStorage.getItem("totalDespesa")));
     this.bancoProvider.remove(item.key)
       .then(() => {
         let index = this.caixas.indexOf(item);
+        valorDespesas -=  (item.caixa.valor * 1);
+        localStorage.setItem('totalDespesa', String(valorDespesas));
+        this.bancoProvider.calcular();
         this.caixas.splice(index, 1);
 
         this.toastCtrl.create({
@@ -49,7 +54,7 @@ export class DespesaPage {
           , position: 'bottom'
         }).present();
       });
-    this.bancoProvider.getAll();
+    this.bancoProvider.calcular();
   }
 
   ngIfCtrl() {
