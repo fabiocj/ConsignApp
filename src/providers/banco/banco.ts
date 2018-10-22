@@ -38,7 +38,6 @@ export class BancoProvider {
   }
 
   public getAllRenda() {
-    let totalRenda: number = 0;
     let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string) => {
@@ -46,7 +45,6 @@ export class BancoProvider {
       caixa.key = key;
       caixa.caixa = value;
       if (caixa.caixa.ehRenda == true) {
-        totalRenda += (caixa.caixa.valor * 1);
         caixas.push(caixa);
       }
     })
@@ -60,8 +58,6 @@ export class BancoProvider {
   }
 
   public getAllDespesa() {
-    let totalDespesa: number = 0;
-    let totalConsignado: number = 0;
     let caixas: CaixaList[] = [];
 
     return this.storage.forEach((value: Caixa, key: string) => {
@@ -69,11 +65,6 @@ export class BancoProvider {
       caixa.key = key;
       caixa.caixa = value;
       if (caixa.caixa.ehRenda == false) {
-        if (caixa.caixa.ehConsignado == true) {
-          totalConsignado += (caixa.caixa.valor * 1);
-        } else {
-          totalDespesa += (caixa.caixa.valor * 1);
-        }
         caixas.push(caixa);
       }
     })
