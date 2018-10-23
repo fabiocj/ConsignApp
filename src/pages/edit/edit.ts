@@ -36,12 +36,16 @@ export class EditPage {
 
     if (this.origem == "Renda") {
       this.ehRenda = true;
-      this.botaoDesabilitado = true;
       this.mostrarConsignado = false;
+      this.botaoDesabilitado = true;
     } else {
       this.ehRenda = false;
-      this.botaoDesabilitado = false;
       this.mostrarConsignado = true;
+      if (this.transacao == "Editar") {
+        this.botaoDesabilitado = true;
+      } else {
+        this.botaoDesabilitado = false;
+      }
     }
 
     if (this.navParams.data.caixa && this.navParams.data.key) {
@@ -51,6 +55,7 @@ export class EditPage {
     } else {
       this.model = new Caixa();
     }
+
   }
 
   ionViewDidLoad() {
@@ -108,20 +113,20 @@ export class EditPage {
             , duration: 2000
             , position: 'bottom'
           }).present();
-          if (this.transacao == "Editar") {
-
-          }
           if (this.origem == "Renda") {
             valorRendas += (this.model.valor * 1) - this.valorEditar;
             localStorage.setItem('totalRenda', String(valorRendas));
-          } else if ((this.origem == "Despesa") && (this.model.ehConsignado == false))  {
-            valorDespesas += (this.model.valor * 1) - this.valorEditar;
-            localStorage.setItem('totalDespesa', String(valorDespesas));
           } else {
-            valorConsignados += (this.model.valor * 1) - this.valorEditar;
-            localStorage.setItem('totalConsignado', String(valorConsignados));
+            //this.origem == "Despesa"
+            if (this.model.ehConsignado == false) {
+              valorDespesas += (this.model.valor * 1) - this.valorEditar;
+              localStorage.setItem('totalDespesa', String(valorDespesas));
+            } else {
+              //this.model.ehConsignado == true
+              valorConsignados += (this.model.valor * 1) - this.valorEditar;
+              localStorage.setItem('totalConsignado', String(valorConsignados));
+            }
           }
-
           this.navCtrl.pop();
         })
         .catch(() => {
