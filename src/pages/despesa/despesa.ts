@@ -40,11 +40,18 @@ export class DespesaPage {
 
   removeDespesa(item: CaixaList) {
     let valorDespesas = (Number(localStorage.getItem("totalDespesa")));
+    let valorConsignados = (Number(localStorage.getItem("totalConsignado")));
     this.bancoProvider.remove(item.key)
       .then(() => {
         let index = this.caixas.indexOf(item);
-        valorDespesas -=  (item.caixa.valor * 1);
-        localStorage.setItem('totalDespesa', String(valorDespesas));
+        if (item.caixa.ehConsignado == true) {
+          valorConsignados -=  (item.caixa.valor * 1);
+          localStorage.setItem('totalConsignado', String(valorConsignados));
+        } else {
+          valorDespesas -=  (item.caixa.valor * 1);
+          localStorage.setItem('totalDespesa', String(valorDespesas));
+        }
+
         this.bancoProvider.calcular();
         this.caixas.splice(index, 1);
 
